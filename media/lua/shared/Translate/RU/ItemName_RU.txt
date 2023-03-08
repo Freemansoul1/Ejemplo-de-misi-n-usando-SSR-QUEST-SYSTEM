@@ -1,0 +1,6 @@
+ItemName_RU = {
+	ItemName_expansion.SallySpecial = "Особый коктейль Салли",
+	ItemName_expansion.Cocktail = "Коктейль",
+	ItemName_expansion.Delarock = "Неопознанный напиток",
+	ItemName_expansion.NotDelarock = "Неопознанный напиток",
+}

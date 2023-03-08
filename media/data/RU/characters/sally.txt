@@ -1,0 +1,44 @@
+#name Sally|Салли
+#set_stat Sally|affection|28
+#set_stat Sally|terror|60
+
+#desc Имя: Салли
+#is_flag age_learned,true
+    #desc_append Возраст: 27
+    #jump status
+#desc_append Возраст: Неизвестно
+
+*status
+#is_alive Sally,true
+    #desc_append Статус: Жива
+    #jump description
+#desc_append Статус: Скончалась
+
+*description
+#desc_append Одинокая женщина, поселившаяся в продуктовом магазине. Потеряла лучшую подругу во время апокалипсиса. Любит дорогой алкоголь и кошек.
+#is_flag nellie,true
+    #desc_append Имя подруги Салли - Нелли Хенард. В прошлом была её психотерапевтом.
+#jump affection
+
+*affection
+#is_stat Sally,affection,29,gt
+    #desc_append Слегка заинтересована во мне.
+    #jump terror
+#is_stat Sally,affection,19,gt
+    #desc_append Опасается меня.
+    #jump terror
+#desc_append Терпеть меня не может.
+#jump terror
+
+*terror
+#is_stat Sally,terror,75,gt
+    #desc_append Страдает от тяжёлой депрессии.
+    #exit
+#is_stat Sally,terror,50,gt
+    #desc_append Страдает от депрессии. 
+    #exit
+#is_stat Sally,terror,30,gt
+    #desc_append Выглядит расстроенной, но ничего серьёзного. 
+    #exit
+#desc_append Здорова и в приподнятом настроении.
+#exit

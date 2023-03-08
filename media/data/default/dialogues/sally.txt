@@ -1,0 +1,166 @@
+#is_quest gd_msq1|unlocked,uncompleted
+    #is_task gd_msq1|t3|uncompleted
+        #is_flag gd_msq1_extra,false
+            #m Sally|Sally.png|"Hey, you're back. So, have you found everything?"
+            #m You|"Not yet, I was just checking on you."
+            #m Sally|Sally.png|"I feel bad for not being able to help. Having a panic attacks every time I move to the windows."
+            #m You|"Don't sweat it. I was the one who offered help. Leave this to me."
+            #m Sally|Sally.png|"Okay. Since you're here want me get you some snack? We have an ice cream."
+            #m You|"Sure, why not."
+            #hide_panel
+            #reward Base.Icecream,1,common
+            #set_flag gd_msq1_extra,true
+            #m You've eaten some ice cream given by Sally and after finishing eating decided to head back.
+    #m Sally|Sally.png|"Be careful out there. Those things are everywhere."
+    #exit
+            
+#is_quest gd_msq2|unlocked,uncompleted
+    #is_task gd_msq2|t1_1|uncompleted
+        #script sally_story.txt|quest_2_1
+    #is_task gd_msq2|t1_2|uncompleted
+        #m You feel upset as you look at Sally who's trembling beside the trash container.
+        #m You|(I should hurry up and kill those bastards.)
+        #exit
+    #is_task gd_msq2|t2|unlocked
+        #jump gas_station
+
+#is_quest gd_rq2|unlocked,uncompleted
+    #is_task gd_rq2|r0|uncompleted
+        #is_event gd_rq2_cd|true
+            #m You chitchat with Sally. Tomorrow will be a long riding day.
+            #exit
+        #is_quest gd_rq1|locked
+            #quest_unlock gd_rq1
+            #m You|(There's no time for idle conversation. I should get back to work.)
+            #exit
+        #is_task gd_rq1|t1|completed
+            #m You|(Alright, I got rid of zombies. Next step is getting Sally worked up.)
+            #set_flag gd_rq1_cleared,true
+            #set_flag gd_rq2_available,true
+            #jump gd_rq2_start
+        #m You|(Not the right time!)
+        #exit
+    *gd_rq2_start
+    #is_stat Sally,experience,1,lt
+        #m You|"Well, Sally, the time has come!"
+        #m Sally|Sally.png|"What? Now?"
+        #m You|"Stay strong Sally and be ready at all times!"
+        #m Sally|Sally.png|"Ugh, my tummy hurts..."
+        #m Without saying anything Sally headed to the restroom.
+        #fade_out black
+        #m Few minutes later...
+        #sfx toilet_flush
+        #fade_in
+        #m Sally|Sally.png|"Pheew, I think I feel better now."
+        #stat_inc Sally|experience|1
+    #script sally_quests.txt|rq2_intro
+
+#is_quest gd_rq1|unlocked,uncompleted
+    #jump recurrent_quests
+
+#is_quest gd_msq2|locked
+    #is_cleared Sally,2,gt
+    #is_event gd_quest_cd|false
+        #m You|(I think Sally's ready for a new challenge. The question is should we start it right now or later?)
+        #choice
+            gd_msq2_start|Let's do it
+            gd_rq2|Not yet
+        *gd_msq2_start
+        #script sally_story.txt|quest_2_intro
+
+*gd_rq2
+#is_event gd_rq2_cd|false
+    #m You|(It's been a while since I sent Sally on a mission.)
+    #choice
+        gd_rq2_reset|She needs a workout
+        gd_rq2_nevermind|Later
+    *gd_rq2_reset
+        #set_flag gd_rq2_cleared,false
+        #set_flag gd_rq2_easy,false
+        #set_flag gd_rq2_normal,false
+        #set_flag gd_rq2_hard,false
+        #set_flag gd_rq2_trouble,false
+        #quest_reset gd_rq2
+        #task_complete gd_rq2|r0
+        #task_unlock gd_rq2|t1
+        #quest_unlock gd_rq2
+        #jump gd_rq2_start
+    *gd_rq2_nevermind
+        #m You|(Maybe another time.)
+
+#jump recurrent_quests
+
+*gas_station
+    #is_event gd_msq2_rest|true
+        #m Sally|Sally.png|"Haah, so tired. Give me a minute to catch my breath. Look around if you want."
+        #exit
+    #is_quest gd_msq3|locked
+        #script sally_story.txt|quest_3_intro
+    #is_quest gd_msq3|uncompleted
+        #is_task gd_msq3|t1|uncompleted
+            #m Sally|Sally.png|"I'll be waiting you here."
+            #exit
+        #m Sally|Sally.png|"Welcome back! Any good news?".
+        #is_flag gd_msq3_route_c,true
+            #is_task gd_msq3|t4|completed
+                #choice
+                    quest_3_true_ending|Tell Sally the truth
+                    quest_3_normal_ending_1|Give her the recipe book|gd_msq3_recipe
+                    quest_3_normal_ending_2|Give her a fake cocktail|gd_msq3_route_a
+                    quest_3_evil_ending|Give her a real cocktail|gd_msq3_route_b
+                    quest_3_exit|Cancel
+        #is_task gd_msq3|t1|completed
+            #choice
+                quest_3_normal_ending_1|Give her the recipe book|gd_msq3_recipe
+                quest_3_normal_ending_2|Give her a cocktail|gd_msq3_cocktail
+                quest_3_normal_ending_3|Tell her you haven't found anything
+                quest_3_exit|Cancel
+        *quest_3_exit
+            #m You|"Not yet".
+            #m Sally|Sally.png|"Oh, well, have some rest."
+            #exit
+        *quest_3_true_ending
+            #script sally_story.txt|quest_3_ending_c
+        *quest_3_normal_ending_1
+            #script sally_story.txt|quest_3_ending_d
+        *quest_3_normal_ending_2
+            #is_flag gd_msq3_route_a,true
+                #script sally_story.txt|quest_3_ending_a
+            #jump quest_3_evil_ending
+        *quest_3_normal_ending_3
+            #script sally_story.txt|quest_3_ending_e
+        *quest_3_evil_ending
+            #script sally_story.txt|quest_3_ending_b
+    #is_event GasStation|true
+        #script sally_events.txt|gas_station
+    #is_task gd_msq2|t3|uncompleted
+        #m Sally|Sally.png|"Yes, yes! Can't wait to go home. Screw this dying world!"
+        #m You|(Hehe, she's acting like a kid.)
+        #exit
+    #m Sally|Sally.png|"So, are we heading home?"
+    #choice
+        gd_msq2_return|Yes
+        gd_msq2_wait|Not yet
+    *gd_msq2_return
+        #script sally_story.txt|quest_2_3
+    *gd_msq2_wait
+        #m Sally|Sally.png|"Okay. Tell me, when we are ready to head back."
+        #exit
+    *gd_msq2_event
+        #is_time 2:00|4:00
+            #set_event GasStation|false|7:00
+            #task_unlock gd_msq2|t3
+            #exit
+        #task_reset gd_msq2|t2_1
+        #task_unlock gd_msq2|t2_1
+        #exit
+
+*recurrent_quests
+    #is_event gd_quest_cd|false
+        #is_quest gd_rq1|locked
+            #script sally_quests.txt|rq1_intro
+        #is_quest gd_rq1|uncompleted
+            #script sally_quests.txt|rq1_main
+
+#m Sally|Sally.png|"Oh, welcome back. Rest and make yourself comfortable"
+#exit

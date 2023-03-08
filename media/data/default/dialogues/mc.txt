@@ -1,0 +1,7 @@
+*initialize
+    #r_jump immunity_route,10
+    #set_flag normal_route,true
+    #exit
+    *immunity_route
+        #set_flag immunity_route,true
+        #exit

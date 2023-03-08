@@ -1,0 +1,23 @@
+*gd_msq1
+#name My home is my fortress
+#desc Sally lives in convenience store at the centre of Muldraugh. This place is an easy target for unwanted guests. If we're going to stay there, we need to reinforce it somehow.
+
+*gd_rq1
+#name Bloody cleanup
+#desc Sally complains that there's way too many zombies in our neighborhood. Because of this she can't embark on expeditions. I should try and help her clean this mess.
+
+*gd_rq2
+#name Rising of Sally
+#desc The received shock, drunkenness and extreme seclusion undoubtly have weakened Sally, but I can't let this keep going. I should help her strengthen one's own self-confidence.
+
+*gd_msq2
+#name Sally the Explorer
+#desc Come on, vamanos! Everybody, let’s go! Come on, let’s get to it. I know that we can do it! We'll have an exciting trip today!
+
+*gd_msq3
+#name Ambrosia of Undying Hope
+#desc Sally told me about a special cocktail sold in the bar, located in the south part of Muldraugh. She praised it so much, that I couldn't help but pick an interest in it. Probably not a heaven in a glass like she says, but definitely something worth taking a shot. She asked me to find either recipe or cocktail. Hopefully at least one of them can be found in the bar.
+
+*gd_eq1
+#name Night activies
+#desc Who in their right mind would do this during the apocalyse!? <LINE> On the one hand...

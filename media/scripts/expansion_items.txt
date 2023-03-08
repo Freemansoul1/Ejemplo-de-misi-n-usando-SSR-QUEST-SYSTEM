@@ -1,0 +1,80 @@
+module expansion
+{
+	imports
+	{
+		Base
+	}
+	
+	item Delarock
+	{
+		Count	=	1,
+		Weight	=	0.3,
+		Type	=	Normal,
+		DisplayName	=	Unknown Drink,
+        Icon	=	MugRedFull,
+        StaticModel = Mug,
+        WorldStaticModel = MugRed,
+	}
+	
+	item NotDelarock
+	{
+		Count	=	1,
+		Weight	=	0.3,
+		Type	=	Normal,
+		DisplayName	=	Unknown Drink,
+        Icon	=	MugRedFull,
+        StaticModel = Mug,
+        WorldStaticModel = MugRed,
+	}
+	
+	/********************Special**********************/
+	
+	item SallySpecial
+	{
+		FatigueChange	=	-50,
+        HungerChange	=	-10,
+      	Weight	=	0.3,
+		AlwaysWelcomeGift	=	TRUE,
+        Type	=	Food,
+        UnhappyChange	=	-100,
+        ThirstChange	=	-100,
+        DisplayName	=	Sally's Special Cocktail,
+        StressChange	=	-40,
+        ReplaceOnUse	=	MugRed,
+		Alcoholic	=	TRUE,
+        Icon	=	MugRedFull,
+        CustomContextMenu = Drink,
+        CustomEatSound = DrinkingFromCan,
+        Carbohydrates = 0.75,
+        Proteins = 0.12,
+        Lipids = 0,
+        Calories = 4,
+        CantBeFrozen = TRUE,
+        StaticModel = MugRed,
+        WorldStaticModel = MugRed,
+	}
+	
+	item Cocktail
+	{
+		FatigueChange	=	-5,
+        HungerChange	=	-5,
+      	Weight	=	0.3,
+		AlwaysWelcomeGift	=	TRUE,
+        Type	=	Food,
+        UnhappyChange	=	-10,
+        ThirstChange	=	-50,
+        DisplayName	=	Cocktail,
+        ReplaceOnUse	=	MugWhite,
+		Alcoholic	=	TRUE,
+        Icon	=	MugWhiteFull,
+        CustomContextMenu = Drink,
+        CustomEatSound = DrinkingFromCan,
+        Carbohydrates = 0.75,
+        Proteins = 0.12,
+        Lipids = 0,
+        Calories = 4,
+        CantBeFrozen = TRUE,
+        StaticModel = Mug,
+        WorldStaticModel = MugWhite,
+	}
+}

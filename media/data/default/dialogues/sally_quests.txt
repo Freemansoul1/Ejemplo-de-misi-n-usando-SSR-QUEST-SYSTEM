@@ -1,0 +1,245 @@
+*rq1_intro
+    #is_flag gd_rq1_explained,false
+        #set_flag gd_rq1_cleared,false
+        #m Sally|Sally.png|"Just how many of these zombies are there."
+        #m Sally|Sally.png|"Trips becoming more and more dangerous, sooner of later we will run out of resources."
+        #m Sally|Sally.png|"Sadly, I'm not a fighter and cannot even scare away these things, just how are you managing to do that this easily?"
+        #m You|"A huge experience."
+        #m Sally|Sally.png|"Can you deal with those that lurking nearby?"
+        #m Sally|Sally.png|"With this at least, we can without much of a risk, loot neighbouring houses."
+        #set_flag gd_rq1_explained,true
+        #jump rq1_choice
+    #m Sally|Sally.png|"Well then, will you give me a hand in zombie killing?"
+    *rq1_choice
+    #choice
+        rq1_accept|Accept the offer
+        rq1_reject|Decline the offer
+    *rq1_accept
+    #m Sally|Sally.png|"Cool, thanks. Be careful out there! I will wait for good news."
+    #quest_unlock gd_rq1
+    #set_flag gd_rq1_explained,false
+    #exit
+    *rq1_reject
+    #m Sally|Sally.png|"I understand it's quite risky but hopefully you might change your mind."
+    #exit
+
+*rq1_main
+    #is_task gd_rq1|t1|completed
+        #jump rq1_ending
+    #m Sally|Sally.png|"You can use whatever you find here as weapon."
+    #m Sally|Sally.png|"Just be careful of hordes, because if they squeeze you, you are as good as dead."
+    #exit
+
+*rq1_ending
+    #m You tell Sally about how you have killed all zombies.
+    #m Sally|Sally.png|"Wonderful, at least now we can sometimes go outside."
+    #m Sally|Sally.png|"You have my thanks, here take this."
+    #hide_panel
+    #reward_select Base.PiePumpkin,1,common|Base.CakeChocolate,1,common|Base.CakeBlackForest,1,common
+    #set_flag gd_rq1_cleared,true
+    #set_event gd_quest_cd|false|6
+    #is_stat Sally,affection,30,lt
+        #stat_inc Sally|affection|2
+    #exit
+
+*rq2_unlock
+    #is_flag gd_rq2_available,false
+        #task_unlock gd_rq2|t0_1
+    #exit
+
+*rq2_intro
+    #m Sally|Sally.png|"Well then? Where are we going today?"
+    #m Sally looks at you attentively, awaiting a new task.
+    #is_stat Sally,experience,10,lt
+        #m You|(For starters, I will pick up something that won't be difficult. Wouldn't want her to be devoured out there.)
+        #jump rq2_choice
+    #m You|(I think she can manage anything right now.)
+    *rq2_choice
+    #choice
+        rq2_easy_intro|Easy difficulty task
+        rq2_normal_intro|Normal difficulty task
+        rq2_hard_intro|Very difficult task|gd_rq2_expert
+
+*rq2_easy_intro
+    #m You|"For today, let's go with something simple. Go pay visit a Farmer's shop near the motel."
+    #m Sally|Sally.png|"Hmm... Okay. You think there might something left there?"
+    #m You|"At least worth checking out."
+    #fade_out black
+    #m You|Sally slowly leaving your sight.
+    #set_flag gd_rq2_easy,true
+    #npc_remove Sally
+    #fade_in
+    #exit
+
+*rq2_normal_intro
+    #m You|"For today, let's go with something more challenging. Go pay visit a pizzeria near the highway."
+    #m Sally|Sally.png|"Oh... sounds dangerous. Doesn't highway have hordes of undead?"
+    #m You|"I think they are migrating to the north, closer to the border of the city, it should be relatively safe out there."
+    #fade_out black
+    #m You|Sally slowly leaving your sight.
+    #set_flag gd_rq2_normal,true
+    #npc_remove Sally
+    #fade_in
+    #exit
+
+*rq2_hard_intro
+    #set_flag gd_rq2_hard,true
+    #npc_remove Sally
+    #exit
+
+*rq2_ending
+    #is_flag gd_rq2_trouble,true
+        #jump rq2_trouble
+    #is_flag gd_rq2_easy,true
+        #r_jump rq2_easy_success,70
+        #is_stat Sally,experience,5,gt
+            #r_jump rq2_easy_success,70
+            #is_stat Sally,experience,10,gt
+                #r_jump rq2_easy_success,70
+        #jump rq2_trouble
+    #is_flag gd_rq2_normal,true
+        #r_jump rq2_normal_success,50
+        #is_stat Sally,experience,5,gt
+            #r_jump rq2_normal_success,50
+            #is_stat Sally,experience,10,gt
+                #r_jump rq2_normal_success,50
+        #jump rq2_trouble
+    #is_flag gd_rq2_hard,true
+        #r_jump rq2_hard_success,30
+        #is_stat Sally,experience,15,gt
+            #r_jump rq2_hard_success,30
+            #is_stat Sally,experience,20,gt
+                #r_jump rq2_hard_success,30
+    #jump rq2_trouble
+
+*rq2_easy_success
+    #task_complete gd_rq2|t3
+    #task_unlock gd_rq2|e1
+    #fade_out black
+    #teleport 10841,10033,0
+    #remove_zombies 25|10841,10031,0|1
+    #npc_update Sally
+    #look_at 10840,10031
+    #fade_in
+    #m Sally|Sally.png|"Hah, didn't even sweat."
+    #m You|Sally methodically removes stuff from the bag and shows it to you.
+    #m You|"Holy molly! Good job, Sally."
+    #hide_panel
+    #reward_select Base.CannedCarrots,2,common|Base.CannedTomato,2,common|Base.CannedPotato,1,common,true
+    #stat_inc Sally|experience|2
+    #set_flag gd_rq2_cleared,true
+    #exit
+
+*rq2_normal_success
+    #task_complete gd_rq2|t3
+    #task_unlock gd_rq2|e1
+    #fade_out black
+    #teleport 10841,10033,0
+    #remove_zombies 25|10841,10031,0|1
+    #npc_update Sally
+    #look_at 10840,10031
+    #fade_in
+    #m Sally|Sally.png|"The easiest supplies in my life!!
+    #m Sally methodically removes stuff from the bag and shows it to you.
+    #m You|"What are you saying? Is it really without it's own share of adventures?"
+    #m Sally|Sally.png|"None-at-all."
+    #m She shakes her head.
+    #hide_panel
+    #reward_select Base.CannedBolognese,2,rare|Base.CannedCornedBeef,2,rare|Base.Pizza,1,common,true
+    #stat_inc Sally|experience|3
+    #stat_dec Sally|terror|2
+    #set_flag gd_rq2_cleared,true
+    #exit
+
+*rq2_hard_success
+    #task_complete gd_rq2|t3
+    #task_unlock gd_rq2|e1
+    #fade_out black
+    #teleport 10841,10033,0
+    #remove_zombies 25|10841,10031,0|1
+    #npc_update Sally
+    #look_at 10840,10031
+    #fade_in
+    #stat_inc Sally|experience|4
+    #stat_dec Sally|terror|2
+    #set_flag gd_rq2_cleared,true
+    #exit
+
+*rq2_trouble
+    #set_flag gd_rq2_trouble,true
+    #m You|(Sally surely taking her time... Did something happen? I need to check on her.)
+    #task_complete gd_rq2|t3
+    #task_unlock gd_rq2|e2
+    #fade_out black
+    #teleport 10841,10033,0
+    #remove_zombies 25|10841,10031,0|1
+    #look_at 10840,10031
+    #is_flag gd_rq2_easy,true
+        #jump rq2_easy_trouble
+    #is_flag gd_rq2_normal,true
+        #jump rq2_normal_trouble
+    #is_flag gd_rq2_hard,true
+        #jump rq2_hard_trouble
+    #exit
+
+*rq2_easy_trouble
+    #m You|Approaching the Farmer's shop, you see a few zombies trying to smash the door. One of them keeps hitting the glass which already starting to crack.
+    #m Without wasting a moment, you deal with the undead.
+    #m Sally|Sally.png|"Phewww... You are just on time! I thought I will be goner today and won't able to return..."
+    #m You|"How the heck did you manage to get yourself into this mess? This was one of the safest routes..."
+    #m Sally|Sally.png|"Promise me you won't shout at me. Well, I... uh... On my way I decided to sit in a car."
+    #m You|"'Sit in the car'? What do you mean by that and why would you do that?"
+    #m You|Sally looks nervous and embarrassed.
+    #m Sally|Sally.png|"Well... just... to sit. Since I never managed to get driver license I always dreamed of the car. For your information, I'm not stupid and know, that in apocalypse one must have a car! Driving is life!"
+    #m You|"Okay and then...?"
+    #m Sally|Sally.png|"So... uh... I did sit in the car, took a steering wheel and started to imagine that I'm on the highway. Around me the other and I'm taking them over... and in my fantasy I pressed the... horn..."
+    #m You|"Why in the heaven's sake would you ever do that?
+    #m Sally|Sally.png|"Less than a second, I swear, pinky promise! I instantly realized what I've done, wanted to get out of the car but the door got jammed... and I panicked a little. While pulling the handle, 3 undead appeared from forest and came near the car, in one moment I managed to get out and run to the store but they followed me and surrounded me. I tried sitting quietly but as you know also, only way to distract them is using other sound... but it's so quiet here like in space!"
+    #m You|"For the future, promise me that you won't get into the cars, okay? At least not during our supply missions."
+    #m Sally|Sally.png|" I'm sorry, I promise..."
+    #m .........
+    #m ......
+    #m ...
+    #m After some time you and Sally have returned to the shelter.
+    #npc_update Sally
+    #fade_in
+    #m Sally|Sally.png|"Next time I can do it. Trust in me."
+    #m You|"We'll see about that.
+    #stat_inc Sally|experience|1
+    #stat_inc Sally|terror|2
+    #set_flag gd_rq2_cleared,true
+    #exit
+
+*rq2_normal_trouble
+    #m For some time now you're hearing police siren from afar.You came closer to the source of the sound just to find a car near pizza shop, it's doors open and siren echoes on the entire neighbourhood. You notice some cracks on the siren like somebody tried to silence it by plugging it with something. Zombies surrounding the car but there doesn't seem to be a lot of them attracted yet.
+    #m You spot Sally behind the windows of pizzeria. She looks terrified and constantly looks around.
+    #m When Sally notices you, she smiles happily. She shows you something with hand signs but due to her panic it's hard to tell what she exactly.
+    #m After some time you realize what she meant, she asked if there is a safe route to leave? You carefully look around. There still aren't many zombies and for the matter of fact they are heading towards the siren which is slightly on the side. You know, that if Sally will be quiet, the undead won't pay attention to her. You give her a signal.
+    #m .........
+    #m ......
+    #m ...
+    #m After some time you and Sally finally returned to shelter.
+    #npc_update Sally
+    #fade_in
+    #m Sally|Sally.png|"God, I have lost a few years of my life there!"
+    #m You|"How did it even happen?"
+    #m Sally|Sally.png|"Oh yeah... the story is quite... silly. When I was coming closer to the pizzeria, I saw three undead right inside the building and because of that I decided to wait out a little bit..."
+    #m Sally|Sally.png|"I thought they will leave on their own... So an hour have passed but they still were walking inside. And I started to think how to lure them outside but in a way that they won't follow me, so I used rocks since I thought they will follow the sound but sounds were too quiet and then I had an eureka moment, the police car. They produce sounds, right? And they also have separate battery specifically for the siren."  
+    #m You|"Did you seriously decide to turn on the police siren..?"
+    #m Sally|Sally.png|"No wait, let me finish! Well, I found the siren control and volume regulator... and I thought that if I turn the volume all the way down, then I might have a pretty good local and not loud source of sound! But who knew, that even the lowest volume would be this loud."
+    #m Sally|Sally.png|"I'm sorry that I acted so recklessly... I tried to turn it off fast but in panic I started to spin all of the switches and regulators, Then saw those three coming out of the pizza shop, got scared and ran out of the car. I hid in the forest, then slowly walked around them and shut myself in pizzeria. Then when I thought about leaving home I started to see zombies approaching because of police siren..."
+    #m Sally|Sally.png|"I got terrified because there might have been somebody behind the door ready to ambush me and because of that I decided not to come out and observe. Then you appeared!"
+    #m You|"Your adventurous spirits worthy of envy, what can I say. How could even think of something like that at all! You are one hella crazy!"
+    #m Sally|Sally.png|"Yes... It turned out stupid but hey? Look what I have found!"
+    #hide_panel
+    #reward Base.Pizza,1,common
+    #stat_inc Sally|experience|1
+    #stat_inc Sally|terror|2
+    #set_flag gd_rq2_cleared,true
+    #exit
+
+*rq2_hard_trouble
+    #stat_inc Sally|experience|1
+    #stat_inc Sally|terror|2
+    #set_flag gd_rq2_cleared,true
+    #exit

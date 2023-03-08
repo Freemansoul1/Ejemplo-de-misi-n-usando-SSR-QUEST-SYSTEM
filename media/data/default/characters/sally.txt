@@ -1,0 +1,44 @@
+#name Sally|Sally
+#set_stat Sally|affection|28
+#set_stat Sally|terror|60
+
+#desc Name: Sally
+#is_flag age_learned,true
+    #desc_append Age: 27
+    #jump status
+#desc_append Age: Unknown
+
+*status
+#is_alive Sally,true
+    #desc_append Status: Alive
+    #jump description
+#desc_append Status: Deceased
+
+*description
+#desc_append A lonely woman, who lives in convenience store. Have lost her best friend during apocalypse. Likes expensive alcohol and cats.
+#is_flag nellie,true
+    #desc_append Her friend's name is Nelly Henard. In combination she was also her therapist.
+#jump affection
+
+*affection
+#is_stat Sally,affection,29,gt
+    #desc_append Takes some liking in me.
+    #jump terror
+#is_stat Sally,affection,19,gt
+    #desc_append Seems to be wary of me.
+    #jump terror
+#desc_append Clearly hates my guts.
+#jump terror
+
+*terror
+#is_stat Sally,terror,75,gt
+    #desc_append Suffers from a heavy depression.
+    #exit
+#is_stat Sally,terror,50,gt
+    #desc_append Suffers from depression.
+    #exit
+#is_stat Sally,terror,30,gt
+    #desc_append Looks somewhat upset, but nothing serious.
+    #exit
+#desc_append Looks well and in good spirits.
+#exit

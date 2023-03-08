@@ -1,0 +1,1076 @@
+*quest_1_intro
+    #m Looking around I saw no zombies nearby and sighed with relief.
+    #m You|(Pheew, these bastards can follow you to the end of the world. How the hell did I decide to help that drunkard.)
+    #m You|(Either way we need some tools and materials to reinforce our temporary base. Convenience store where Sally is staying has way too many windows, any zombie can easily get inside.)
+    #m You|(First I need to find a hammer and a nail box. Also planks. If I remember correctly there are storehouses in Muldraugh where all these stuff can be found. In the worst case, I will have to look in houses and garages.)
+    #m Wiping a sweat from your forehead, you slowly stretching your body.
+    #m You|(Alright, can't stay here any longer. Time to head out.)
+    #reveal Sally
+    #exit
+
+*quest_1_1_plank
+    #m You|(Ugh, they're heavy.)
+    #m Taking a few planks you can tell that you won't be able to bring everything in one go.
+    #m You|(I guess, I'll be bringing them gradually.)
+    #m You|(The most important task is to get hammer and nails.)
+    #is_task gd_msq1|t2_1|completed
+        #m You|(Fortunately, I have already found them. Time to go back.)
+    #exit
+
+*quest_1_2
+    #m You|(Well, all is left is to barricade all the exists. I should prioritize windows, since they are our most exposed weakness right now.)
+    #m You|(Will try to finish the job, before we get more uninvited guests.)
+    #exit
+
+*quest_1_3
+    #fade_out black
+    #m You|"Hey, Sally, I finished making barricades. You can come out now."
+    #teleport 10841,10033,0
+    #remove_zombies 25|10841,10031,0|1
+    #npc_create Sally|sally_normal|idle|10840,10031,0|SE
+    #look_at 10840,10031
+    #fade_in
+    #m As you said that Sally came out from her hiding place.
+    #m Sally|Sally.png|"It became kinda darker."
+    #m You|"Of course it did, because I've barricaded windows."
+    #m Sally|Sally.png|"Thanks for your help. I almost have nothing to offer in return. If you want I can give you some canned food."
+    #m You|"I won't say no but are you sure you have enough for yourself?"
+    #m Sally|Sally.png|"Yeah, I guess. I can hold it a couple of weeks. After that... well."
+    #m With a sad smile Sally averts her eyes.
+    #m You|"I pretty sure there's something else you can do for me."
+    #m Suddenly Sally's expression sank.
+    #m You|"For example, pull yourself together and start going out for food. I understand that you've been through a lot and now you're scared of going outside, but you don't need to worry that much."
+    #m You|"I'm here to help you to get back on your feet."
+    #m You|"It's not the first time I get my hands covered in the blood. How do you think I got here with all those undead outside? Over time I'll this area safer and you'll be able to help with searching food. By that time we may as well be able to find alternative food sources."
+    #m Having relaxed a little bit, Sally smiled again.
+    #m Sally|Sally.png|"Okay, I'll do my best."
+    #m You|"Alright then. In the morning I'm going out on a hunt. As for now, let's drink some tea."
+    #hide_panel
+    #fade_out black
+    #is_flag gd_msq1_cleared,false
+        #set_flag gd_msq1_cleared,true
+        #set_flag gd_msq1_extra,false
+        #reward Base.HotDrink,1,common
+    #npc_update Sally
+    #set_stat Sally|experience|0
+    #set_event gd_rq2_cd|false|06:00|0
+    #quest_complete gd_msq1
+    #quest_unlock gd_rq2
+    #fade_in
+    #exit
+
+*quest_2_intro
+    #m You greet Sally who's staring at the barricaded windows with a long face.
+    #m You|"Hey Sally. How have you been?"
+    #m Sally|Sally.png|"I'm so bored, but still don't want go out without reason."
+    #m You|"I see. Wanna go to the other side of the city with me?"
+    #m Sally|Sally.png|"Umm, why?"
+    #m You|"To take your mind off things. Or you'd prefer to keep staring into empty space?"
+    #m Sally|Sally.png|"Haha, no. So where are we going exactly?"
+    #m You|"Good question. Let's see... How about the southern part of the city?"
+    #pop_up sally/gs.png|5
+    #m Sally|Sally.png|"Hmmmm... Oh, sure, let's go. When are we moving out?"
+    #m The moment Sally you saw the map, she got overfilled with excitement, and her eyes lighted up.
+    #m You|"Get ready, we're heading out in 20 minutes."
+    #m Sally|Sally.png|"I'm ready!"
+    #m You|"Then... Wanna go ahead? I'll catch you up."
+    #fade_out black
+    #m Upon hearing your command she instantly departed.
+    #quest_unlock gd_msq2
+    #npc_remove Sally
+    #fade_in
+    #m You|"So she can act like this, when she wants to."
+    #exit
+
+*quest_2_1
+    #m As Sally noticed your presence, she beckoned you to come closer to her.
+    #m Sally|Sally.png|"Shhh, don't make too much noise. They're everywhere."
+    #m You|"Then why won't you go and kill some?"
+    #m Sally|Sally.png|"You're joking, right? There's too many of them, and I don't have any weapons."
+    #m You|"Didn't you say that you were ready?"
+    #m Sally|Sally.png|"To walking around the city, not to a bloodbath."
+    #m With a deep sigh you prepare yourself for upcoming battle.
+    #m You|"Well, looks like, I'll have to do everything myself again."
+    #set_flag gd_msq2_intro,true
+    #exit
+
+*quest_2_2
+    #fade_out black
+    #teleport 10673,10624,0
+    #task_unlock gd_msq2|t2
+    #npc_update Sally
+    #set_event gd_msq2_rest|false|2
+    #look_at 10671,10623
+    #fade_in
+    #m You|"This is our stop."
+    #m Sally|Sally.png|"Yeah. I'm so tired."
+    #m You|"..."
+    #m As you stare down Sally, she smiles.
+    #m Sally|Sally.png|"Give me a minute to catch my breath. Look around if you want.".
+    #m Without knowing how to answer that, you decided to do what she suggested.
+    #exit
+
+*quest_2_3
+    #m Sally|Sally.png|"Finally."
+    #fade_out black
+    #teleport 10842,10033,0
+    #set_flag gd_msq2_cleared,true
+    #npc_update Sally
+    #look_at 10840,10031
+    #fade_in
+    #m Sally|Sally.png|"Phew, travelling is fun, but it's always better at home."
+    #m You|"Yeah, but that's not your home."
+    #m Sally|Sally.png|"Right but now it's mine. Doesn't matter anyway. Booo, you always ruin the moment."
+    #m Despite being annoyed by your remarks, Sally was satisfied by the results of your journey.
+    #m You|"By the way where's your real home?"
+    #m Sally|Sally.png|"Ho-ho, glad you asked."
+    #m Sally|Sally.png|"Actually, I..."
+    #set_volume music|0
+    #hide_panel
+    #fade_out black|2
+    #m I aM a fIGmeNt oF yOUr iMAginaTion.
+    #sfx jobro_dramatic_piano
+    #hide_panel
+    #fade_out white|0.5
+    #pop_up ssr_ending.png|13
+    #fade_in 1|async
+    #restore_volume
+    #m Sally|Sally.png|"Ahahaha, you should have seen your face. Did you really believe that bullshit? A shoddy twist like this could only be made by a person with a shitty taste".
+    #m Sally clutching her stomach in laugher.
+    #m Sally|Sally.png|"Oh, don't cry again. I'm just kidding. Actually I live in Louisville. I came to Muldraugh on vacation?"
+    #m Sally|Sally.png|"Me and my friend were staying in the motel near the farmer's shop. When chaos has begun, we were forced to run somewhere, because it was dangerous in there."
+    #m Sally|Sally.png|"I still don't feel like talking about it, but I promise that someday I'll tell you all the truth."
+    #m You|"I'll listen to your story, when you're ready."
+    #m Sally|Sally.png|"Now, how about grabbing a mug of hot coffee and eating a few croissants?"
+    #m You|"I'm on it."
+    #hide_panel
+    #reward Base.HotDrink,1,common|Base.Croissant,2,common|Base.PetrolCan,1,rare
+    #stat_inc Sally|affection|5
+    #exit
+
+*quest_3_intro
+    #is_flag gd_msq3_intro,false
+        #fade_out
+        #fade_in
+        #m Sally|Sally.png|"Hey, are you listening?"
+        #m You|"Mm?"
+        #m Sally|Sally.png|"I'm telling you that we need a drink. And not some piss in a bottle with fancy design but a real elite alcohol."
+        #m Sally's remark made you chuckle. You in her eyes and see a firm, determined look.
+        #m You|"Right, so what are you suggesting?"
+        #m Sally|Sally.png|"In the southern part of the city, there's a bar... a tavern. I accidentally came across it when I was walking around the area."
+        #m Sally|Sally.png|"It has amazing craft beer, fragrant and tasty, and even more amazing alcohol cocktails."
+        #m Sally|Sally.png|"I've never drank anything better in my life, and believe me, I drank many."
+        #m Sally|Sally.png|"A person who made these cocktails is a true genius. The recipe is kept in a secret."
+        #m Sally|Sally.png|"Every time I tried to asked how he makes them, he always changed the subject."
+        #m You|"Want me to go check it out?"
+        #m Sally|Sally.png|"You catch on quick, my friend. I would like to join you, but I'll probably get brutalized by zombies before we reach it."
+        #m You|(You can say that again.)
+        #set_flag gd_msq3_intro,true
+        #jump quest_3_choice
+    #m Sally|Sally.png|"Changed your mind?"
+    *quest_3_choice
+    #choice
+        quest_3_choice_accept|Accept request
+        quest_3_choice_reject|Decline
+    *quest_3_choice_reject
+    #m Sally sighed.
+    #m Sally|Sally.png|"Too bad. Let me know when you have a change of heart."
+    #exit
+    *quest_3_choice_accept
+    #m You|"Fine. What do you want me to find?"
+    #m Sally|Sally.png|"Look, that place isn't just a bar, more like a tavern. The second floor holds living quarters for it's employees if I'm not mistaken."
+    #m Sally|Sally.png|"Owner lives in one of the rooms. Maybe the recipe book is hidden in his belongings."
+    #m Sally|Sally.png|"The cocktail we need is called Delarock."
+    #m You|"Delarock, I see. Anything else?"
+    #m Sally|Sally.png|"Well, if you find a cocktail inside the fridge, bring it."
+    #m After Sally ended explanation, she fixed her glasses. She tried to hide that broad smile of hers, that appeared when you accepted the job.
+    #m Sally|Sally.png|"If you feel it's too dangerous out there, just come back. Don't forget that survival is more important."
+    #m Sally|Sally.png|"Although with a cocktail like this one it could be much better."
+    #m Sally|Sally.png|"Be careful. Come back safe."
+    #quest_unlock gd_msq3
+    #exit
+
+*quest_3_cocktail
+    #has_item expansion.NotDelarock,1
+        #remove_item expansion.NotDelarock,1
+        #set_flag gd_msq3_route_a,true
+    #has_item expansion.Delarock,1
+        #remove_item expansion.Delarock,1
+        #set_flag gd_msq3_route_b,true
+    #set_flag gd_msq3_cocktail,true
+    #exit
+
+*quest_3_1
+    #m You|(Phew, I think that was the last one.)
+    #sfx stomach
+    #m You|(Ugh, my tummy hurts.)
+    #m You|(Should I take a dump now or wait till I get home?)
+    #choice
+        quest_3_1_true|Some things are better not put off 
+        quest_3_1_normal|I'll manage it somehow (hopefully)
+    *quest_3_1_true
+        #sfx stomach
+        #m You|(Ugh, I gonna shit myself if I don't hurry up.)
+        #task_unlock gd_msq3|t1_2
+        #task_unlock gd_msq3|t1_2_a
+        #task_unlock gd_msq3|t1_2_b
+        #exit
+    *quest_3_1_normal
+        #m You|(Ugh, I can manage it... I can... manage it...)
+        #task_unlock gd_msq3|t2
+        #task_unlock gd_msq3|t4
+        #task_unlock gd_msq3|t4_1
+        #task_unlock gd_msq3|t4_2
+        #task_unlock gd_msq3|t4_3
+        #task_unlock gd_msq3|t4_4
+        #task_unlock gd_msq3|t4_5
+        #task_unlock gd_msq3|t4_6
+        #task_unlock gd_msq3|t4_7
+        #task_unlock gd_msq3|t4_8
+        #exit
+
+*quest_3_1_1
+    #m You carefully inspect the toilet, standing in front of you.
+    #m Its seat is covered in piss, and it smells like shit.
+    #m You|(Fucking hell...)
+    #choice
+        quest_3_1_3|Sit on a throne
+        quest_3_1_cancel|Not in this life
+    #exit
+*quest_3_1_2
+    #m You carefully inspect the toilet, standing in front of you.
+    #m It's seat is clean. Looks like this cabin wasn't used at all.
+    #m You|(Hmm...)
+    #choice
+        quest_3_1_3_flag|Sit on a throne
+        quest_3_1_cancel|Cancel
+*quest_3_1_cancel
+    #exit
+*quest_3_1_3_flag
+    #set_flag gd_msq3_route_c,true
+*quest_3_1_3
+    #fade_out
+    #m You took off your pants and sat on a toilet.
+    #m .........
+    #m ......
+    #m ...
+    #is_flag gd_msq3_route_c,false
+        #sfx toilet_flush
+        #fade_in
+        #m You sighed in relief.
+        #m You|(I'm absolutely disgusted by degenerates who piss with a lowered seat. No respect for other people's asses at all.)
+        #m You|(Getting eaten alive by zombies is a perfect punishment for them.)
+        #m You|(Oh, I almost forgot...)
+        #set_flag gd_msq3_toilet,true
+        #exit
+    #fade_in
+    #m You sighed in relief.
+    #m You|(My work here is done.)
+    #sfx toilet_pull
+    #m You|(Huh...)
+    #sfx toilet_pull
+    #m You're trying to flush the toilet, but nothing happens.
+    #m You|(Something prevents it from working...)
+    #m You look inside the toilet tank.
+    #m You|(There's some kind of package inside. No wonder it doesn't flush.)
+    #sfx package
+    #pop_up sally/q1_1.png
+    #m You|(What the heck!?)
+    #m You took removed the suspicious package from the tank.
+    #m You|(Does it mean, this tavern is 'that' kind of place?)
+    #m You|(On the other side of the package there're numbers. Some kind of date?)
+    #m You|(July 5, 1993. This stinks of crime.)
+    #sfx toilet_flush
+    #m You break up the package and flush its contents in the toilet.
+    #m You|"The case becomes compelling. Only a hard-boiled detective like myself can handle it."
+    #set_flag gd_msq3_toilet,true
+    #exit
+
+*quest_3_2
+    #m You opened the fridge and saw 3 cups with numbers on them.
+    #m One of them might have the cocktail you need.
+    #m Maybe you should check other places before making your choice.
+    #exit
+
+*quest_3_2_selected
+    #sfx fridge_shelf_crash
+    #m You|"Oh, shit!"
+    #m The moment you took the cocktail a shelf in the fridge broke apart and all other cups crashed on the floor.
+    #m You|(I guess, now there's no way to reverse my decision.)
+    #exit
+
+*quest_3_3_photo
+    #m On the floor under the bed you noticed a small piece of paper.
+    #m After you picked it up and shook off the dust, you found out that's was photo.
+    #m You|(A family photograph?)
+    #m It shows two adults and a child:  blonde woman at her 30s, a dark-haired man with beard at his 40s and a 10(?) years old boy. Everyone smiles.
+    #is_flag gd_msq3_diary,false|gd_msq3_diary_unread,false
+        #jump quest_3_3_photo_take
+    #m You|(So, the owner of this place had a wife and a son. It was never mentioned in the diary I found in the other room.)
+    #is_flag gd_msq3_route_c,true
+        #m You|(Could it be wife left with son when she found out what shady business her husband is involved?)
+        #m You|(Hmm... Or maybe they died in the accident or something...)
+    *quest_3_3_photo_take
+    #m On the other side of the photo there's a date.
+    #m You|(October 11, 1992... This photo was not so long ago.)
+    #m You fold the photo and put it into your pocket.
+    #set_flag gd_msq3_photo,true
+    #exit
+*quest_3_3_notes
+    #is_flag gd_msq3_safe,true
+        #is_flag gd_msq3_photo,true
+            #m A family photograph was made on 92.10.11. This might be the code to open the safe.
+        #m You're looking at the safe.
+        #choice
+            quest_3_3_safe_success_normal|Enter the date from photo|gd_msq3_photo
+            quest_3_3_safe_random|Enter a random combination
+            quest_3_3_safe_exit|Cancel
+    #m There's a small safe on the chair in the owner's room.
+    #m You|(I guess it stores many of his secrets.)
+    #set_flag gd_msq3_safe,true
+    #jump quest_3_3_notes
+    *quest_3_3_safe_random
+        #r_jump quest_3_3_safe_success_random,4
+    *quest_3_3_safe_fail
+        #apply_stat Stress,+10
+        #m Nothing happened.
+        #m You|"Looks like the code I entered was wrong."
+        #ret
+    *quest_3_3_safe_success_random
+    #sfx safe_unlock
+    #apply_stat Stress,-1000
+    #m *Click*
+    #wait 1
+    #m You|Holy shit. Jeff Sitar would be proud of me.
+    #jump quest_3_3_safe_success
+    *quest_3_3_safe_success_normal
+    #sfx safe_unlock
+    #m *Click*
+    *quest_3_3_safe_success
+    #m With a click the safe opens. Inside you find a few stacks of documents.
+    #m You|(Bank statements, property papers... And this looks like a diary... Here it is, a recipe book.)
+    #m You|(We need a Delarock recipe. Let's see...)
+    #is_flag gd_msq3_diary,true
+        #m You|(In Chloe's diary is was said that the cocktail was added to the menu in the end of june.)
+    #m You|(I should look for it in the end of book... The list of ingredients looks normal...)
+    #is_flag gd_msq3_route_c,true
+        #m You|(If we ignore a pinch of meth for the thrill of sensations that bastard added to the drink.)
+        #m You|(In the recipe it's marked as M. Any normal person would think it's mango or something.)
+    #m You|(I'll be taking this with me. What's left is his diary...)
+    #is_flag gd_msq3_toilet,false
+        #sfx stomach
+        #m You|(Ugh, spasms came back.)
+        #m Clutching your stomach you take a several deep breaths and exhalations.
+        #m You|"I should head back ASAP."
+        #set_flag gd_msq3_recipe,true
+        #exit
+    #sfx player_reading_magazine_open_01
+    #m You open the diary.
+    #is_flag gd_msq3_route_c,false
+        #m You|(I need to find out what cocktails were left in the fridge. Let's go right to the last entry.)
+        #jump quest_3_3_notes_last
+    #m You|(On the package with dope was the date July 5, 1993. Let's start a few days before it.)
+    #m > July 1, 1993.
+    #m > Today she left all of a sudden. That haughty woman.
+    #m > I know not what happened between them, but Chloe broke into tears the second she heard about it. 
+    #m > Of course that's not for me to say (I am using her too), but at least I wasn't intentionally trying to taint her body, destroy her mind and soul.
+    #m > Now she locked herself in her room and refuses to see anyone.
+    #m > I guess I'll let her rest for a few days.
+    #sfx player_reading_book_page_flip_01
+    #m > July 2, 1993
+    #m > Lately the number of our customers greatly reduced.
+    #m > First of all this affected our regulars.
+    #m > I guess I messed up the dose. It was pretty small, but long-term consumption may have introduced some side-effects: insomnia, anxiety, depression, etc.
+    #m > I've been trying to improve the damn recipe for a long time yet nothing comes out.
+    #sfx player_reading_book_page_flip_01
+    #m > July 3, 1993
+    #m > Today Alexander suddenly came to my room. He said that the sample is gone.
+    #m > It seems that whore decided to chuck us out. If even the delivery of my goods will fail, I'll be as good as dead.
+    #m > Meanwhile Chloe is still secluded in her room. When I walk the corridor, sometimes I hear moans and cries from her room.
+    #m > Poor girl... Eating her heart out about some bitch.
+    #m > I'll try to talk to her this evening.
+    #sfx player_reading_book_page_flip_01
+    #m > July 5, 1993
+    #m > Man, I'm so tired.
+    #m > On the next day Alexander headed off the chase. As for me, I was able to help Chloe come to her senses and get her back to work.
+    #m > Everything seems to be fine, but in the evening I found her unconscious in the bathroom. Her legs were bleeding from dozens of small cuts.
+    #m > First I thought, that she's gone crazy, but when I touched her forehead I discovered that she had a fever.
+    #m > In the end I treated her wounds, helped her dress, gave her antipyretic and put into bed.
+    #m > Hopefully she'll get better soon, and everything will be the same as before.
+    #sfx player_reading_book_page_flip_01
+    *quest_3_3_notes_last
+    #m > July 6, 1993
+    #m > Today I decided to take my mind off things, and prepared a three new cocktails.
+    #m > Number 1 - an improved version of Delarock with a different ratio of ingredients and weaker side-effect (hopefully).
+    #m > Perhaps, I finally found what original drink was missing.
+    #m > Two other cocktails don't have anything special.
+    #m > Number 2 - whiskey with grapefruit juice and a mint leaf.
+    #m > Number 3 - a mix of aloe and lemon infused with alcohol and diluted with dogwood juice.
+    #m > I'll let them sit for a while, and later Chloe will taste them. She doesn't feel well right now.
+    #m You|(I see, so the drink marked with number 1 is Delarock.)
+    #sfx player_reading_book_page_flip_01
+    #m You|(This was the last entry.)
+    #sfx player_reading_magazine_close_01
+    #m You closed the diary.
+    #is_flag gd_msq3_route_c,true
+        #m You|(Hmm...)
+        #m You|(I wonder what was Chloe's fever: infection with zombie virus or dope sickness?)
+        #m You|(I haven't found any corpses that reminded its tenants.)
+    #m You|(Okay, I learned everything I needed. Time to head out.)
+    #set_flag gd_msq3_recipe,true
+    *quest_3_3_safe_exit
+    #exit
+
+*quest_3_3_bath
+    #is_flag h_chloe,false
+        #m A normal bath, if we ignore blood traces and scattered hair.
+        #exit
+    #is_flag h_broken_nail,true
+        #m In wall stash behind the bath I found a small case. Its contents were missing.
+        #exit
+    #m You carefully examine the bath.
+    #m You|(Traces of blood and scattered hair... They must be Chloe's.)
+    #m You|(Nothing interesting in a drain.)
+    #m You|(...)
+    #m You|(Hmm...)
+    #m You checked the floor around the bath.
+    #m You|(It seems, that someone moved the bath.)
+    #fade_out
+    #m In a narrow gap between the bath and the wall, you see something.
+    #m You|(A broken nail with a silver lacquer...)
+    #m Your eyes move and fixate at the wall.
+    #m You|(This part looks different.)
+    #m You carefully remove a part of the wall.
+    #m You|(A case, huh.)
+    #m You|(It's empty, which means the one who broke their nail was after its contents.)
+    #m You|(The object was covered with a small red cloth.)
+    #m You put everything back and get to your feet.
+    #fade_in
+    #m You|(Hmm, well, whatever happened here is already an old story so I might never find the whole truth.)
+    #set_flag h_broken_nail,true
+    #exit
+*quest_3_3_mirror
+    #is_flag h_chloe,false
+        *quest_3_mirror_choice
+        #m You look at the mirror.
+        #choice
+            quest_3_mirror_a|Talk to reflection
+            quest_3_mirror_b|Talk to yourself
+            quest_3_mirror_c|Cancel
+        *quest_3_mirror_a
+        #m You|(You're strong.)
+        #m You|(You're clever.)
+        #m You|(You're ${female,pretty,handsome}.)
+        #apply_stat Stress,+5
+        #jump quest_3_mirror_choice
+        *quest_3_mirror_b
+        #m You|(I'm strong.)
+        #m You|(I'm clever.)
+        #m You|(I'm ${female,pretty,handsome}.)
+        #apply_stat Stress,-5
+        #jump quest_3_mirror_choice
+        *quest_3_mirror_c
+        #exit
+    #is_flag h_perfume,true
+        #m Beside the washbasin I found the perfume Hanna used.
+        #exit
+    #m You carefully examine the washbasin.
+    #m You|(No toothbrushes or combs. I guess, tenants kept them in their rooms.)
+    #m You|(Hmm...)
+    #m As you look around your eyes fixate on the corner of the room.
+    #m On the floor lies a small cylinder shaped object. The moment you move closer, your nose pick up an unknown smell.
+    #m You|(It this... a perfume?)
+    #m You|(Haven't noticed a smell like this when I was in Chloe's room. I guess, this perfume was Hanna's.)
+    #set_flag h_perfume,true
+    #exit
+*quest_3_3_diary
+    #is_flag gd_msq3_diary_unread,true
+        #m You|I don't want to read this.
+        #exit
+    #is_flag gd_msq3_diary,true
+        #m Just looking at the diary made you feel squeamish.
+        #m You|(I shouldn't have read it.)
+        #exit
+    #m You notice a handful of papers on the chair.
+    #m Someone has left here their diaries.
+    #sfx player_reading_magazine_open_01
+    #m > May 29, 1993
+    #m > Today is the first day, since I moved in here.
+    #m > Joseph kindly offered me a work as attendant and a place to live.
+    #m > Honestly I have never had to live at my working place.
+    #m > Place itself doesn't look bad. Very few neighbours, free meals and hourly wage, nothing to complain about.
+    #m > For me it were perfect conditions.
+    #sfx player_reading_book_page_flip_01
+    #m > June 3, 1993
+    #m > Recently I got to know other tenants.
+    #m > There are 5 rooms in the tavern. 4 of them were occupied.
+    #m > In the left room by the end of the corridor lives Joseph, the owner of this place.
+    #m > A friendly man at his 40s. He makes an amazing cocktails.
+    #m > There's not enough words to express how grateful I am to him for hiring me.
+    #m > In a room across from me lives a young man whose name is Alexander.
+    #m > He constantly reads scientific books I'm not very interested in. Something about biology or chemistry.
+    #m > I wasn't able to have a normal conversation with him, but I hope we'll get along.
+    #m > The last tenant is a young woman named Hanna. She's attractive, well-groomed and stylishly dressed.
+    #m > Girls from home town followed the fashion too, but none of them were dressed so... vibrant and revealing?
+    #m > She had an aura of impregnability but she was friendly and affable.
+    #m > Our first meeting was a weird one for sure. Before I said a word she came closer and hugged me as if we were long separated childhood friends.
+    #m > I was surprised and kind of freaked out. But it's not like I hate eccentric personalities.
+    #is_flag gd_msq3_toilet,false
+        #sfx stomach
+        #m You|(Gaaah. I'll shit myself before I can finish reading this. Need to get back to my real job here.)
+        #sfx player_reading_magazine_close_01
+        #set_flag gd_msq3_diary_unread,true
+        #exit
+    #sfx player_reading_book_page_flip_01
+    #m > June 17, 1993
+    #m > A few weeks passed since I started working here. During the day I serve our customers, and during evenings I spend time with other tenants or with myself. Once a week Joseph gives me a day off. It usually happen on weekdays when there aren't many customers.
+    #m > It's embarrassing to admit, but so far I only managed to get close to Hanna. It turned out that we have many common interests. We started to spend our evenings together, during which we just talking or even walking around the city.
+    #m > That being said, for some reason she doesn't like to talk about herself, so I hardly know anything about her.
+    #m > First I thought she was an attendant just like me, but for all time I worked here she's never been in the tavern during day time. I wonder what she does for a living?
+    #sfx player_reading_book_page_flip_01
+    #m > June 20, 1993
+    #m > Lately Joseph is kind of unfocused. In the evenings he seclude himself in his room.
+    #m > Is he taking after Alexander? I think it has to do something with a new recipe.
+    #m > Recently we added a cocktail to our menu called Delarock.
+    #m > It has very unusual taste, but I liked it. 
+    #m > When I asked Joseph how to make one, he only laughed in response. Well, that wasn't surprising.
+    #sfx player_reading_book_page_flip_01
+    #m > June 22, 1993
+    #m > Ah, I can't believe this! Today Hanna saw me naked in the bathroom.
+    #m > How embarrassing! But at the same time what a thrill!
+    #m > She took a long look at my body, smiled with satisfaction and left. What could it mean?
+    #m > Ah, so embarrassing...
+    #m You|(Ehh... Is it really alright for me to read this?)
+    #choice
+        quest_3_diary_read|Read more
+        quest_3_diary_unread|Don't read
+    *quest_3_diary_unread
+    #sfx player_reading_magazine_close_01
+    #m You|(Right, enough of this. Don't worry, author, I do respect your privacy.)
+    #set_flag gd_msq3_diary,true
+    #exit
+    *quest_3_diary_read
+    #sfx player_reading_book_page_flip_01
+    #m > June 26, 1993
+    #m > Can't stop thinking about Hanna. Last few days we had virtually no communication.
+    #m > I tried to make up with her. Bought her a Delarock, but she was uninterested, so I had to drink it myself.
+    #m > Why are you avoiding me, Hanna? Was my figure that bad?
+    #m > But something told me it wasn't the case.
+    #sfx player_reading_book_page_flip_01
+    #m > June 27, 1993
+    #m > What's happening to me? Today of a sudden I snapped and yelled at her.
+    #m > She looked at me with surprise and a disappointment. Without saying anything Hanna just turned around and left.
+    #m > Ah, I'm so sorry, Hanna. Forgive me. I never wanted to push you away.
+    #m > I need to apologize, but first I should get changed.
+    #sfx player_reading_book_page_flip_01
+    #m > June 28, 1993
+    #m > When I took my work clothes and folded it, I heard a knock on the door and a voice... It was Hanna, she came to talk about what happened.
+    #m > I was so exited that I instantly opened the door. It was right after that when something incredible happened.
+    #m > Hanna has kissed me! And her tongue was inside my mouth!
+    #m > My first kiss happened with other girl. My brain melted on this thought. It became hard to breath. And it wasn't over yet.
+    #m > Once more she stolen my lips. Next kiss was even more longer, tender and more passionate. Before I could realize, she removed my bra and started playing with my breasts.
+    #m > Ah, it was so weird, so scary, but so pleasant and exciting. My first definitely wasn't like I imagined it...
+    #m > But I still loved it.
+    #sfx player_reading_book_page_flip_01
+    #m > June 30, 1993
+    #m > Oh, Hanna, my dear Hanna. Today once again you've come to me and we entangled in a fit of passion.
+    #m > A sweet smell of your perfume, sweat shimmering on your white skin, the way you play with my nipples when we rub each other and our fluids start mixing together, ah, and your graceful fingers inside me... Every moment we spent together is engraved on my heart. 
+    #m > Thank you for opening the doors into this world!
+    #m > Now that I experienced all this, my life will never be the same.
+    #m > Let it be! After all, I don't need a life without you.
+    #sfx player_reading_book_page_flip_01
+    #m Starting from new page the handwriting looks rough and there are traces of water on the paper.
+    #m > July 1, 1993
+    #m > She's gone. Gone. GONE! WHY WHY WHY... WHY DID YOU DO THIS, HANNA?!
+    #m > I feel so bAD, so loNeLy wiTHout you. PleaSe, come BAck! DoN'T LEave me Alone!
+    #m > HAnna...
+    #sfx player_reading_book_page_flip_01
+    #m > July 2, 1993
+    #m > HAnna...
+    #m > ToDAy I DId it alOne.
+    #m > MY BoDy iS TREmBLInG. tHe heArT IS PouNdIng.
+    #m > NEveR thoUGHT I CaN IndulgE IN dEbauchery witH OthEr wOMaN. AnD ceRTAINLY cOUlDN't haVE imAGINeD tHAT I wouLd waNt mORE.
+    #m > Ah, haNnA, I'M sO horNy, CAn yoU FOrgIVE ME?
+    #sfx player_reading_book_page_flip_01
+    #m > July 5, 1993
+    #m > Recently we're having very few visitors, telephone line have stopped working.
+    #m > Speaking of tenants, only me and Joseph were left. where did that Alexander go?
+    #m > So frusTRaTiNg! We'VE bEeN tOgEtheR FOr A wHolE mOnth AND NOW tHEY JuST LEfT. i hate iT! i HAte it! I hATE iT! i hATeIt HaTeIThaTeIt!
+    #m > alSo This SmeLL! WhErE DoES it cOmE froM! AnnOYinG! So FRusTrATInG! I HATE IT!
+    #sfx player_reading_book_page_flip_01
+    #m > July 6, 1993
+    #m > I feel bad. head hurts. nausea. so tired.
+    #m > I hurt my leg yesterday, tried to shave my legs. Joseph treated my wounds but bleeding doesn't seem to stop.
+    #m > I will rest a bit... until I feel better.
+    #sfx player_reading_book_page_flip_01
+    #m > July 7, 1993
+    #m > HAnna...
+    #m > i fEEl SIcK
+    #m > wHeRe'S JOSeph?
+    #sfx player_reading_magazine_close_01
+    #m You|(...)
+    #m You|(Cringe. May I pretend I've never read it?)
+    #m You|(Still I wonder about other tenants. Hanna and Alexander, a woman who plays with hearts of other people and a scientist who disappears right before the shit hits the fan...)
+    #m You|(There might be more interesting things left in this building.)
+    #m You|(Oh, I should check the name of the author of this diary.)
+    #m You|(Her name was Chloe Lyps.)
+    #m You|(Alright, remembered. Rest in peace, Chloe.)
+    #set_flag h_chloe,true,Hanna
+    #set_flag gd_msq3_diary,true
+    #exit
+
+*quest_3_3_book
+    #is_flag ms_science_book,true
+        #m There's a virology book on the bed. Owned by a tenant named Alexander.
+        #exit
+    #m There's a medical textbook on the bed.
+    #is_flag gd_msq3_diary,true
+        #m You|(According to the diary of the other tenant, in this room stayed a man called Alexander, who spent most of his time reading science literature.)
+        #m You examine the book's cover.
+        #m You|(Virology.)
+        #m You|(He might have been aiming to become a scientist.)
+        #set_flag ms_science_book,true
+    #exit
+
+*quest_3_3_none
+    #m Nothing interesting here.
+    #exit
+
+*quest_3_ending_a
+    #m You|"Well, I found the cocktail."
+    #m Sally|Sally.png|"Yay! Wait here. I'll go get us some glasses."
+    #is_flag gd_msq3_route_c,true|gd_msq3_recipe,true
+        #m You|(It feels so good to see her smiling.)
+        #m You|(That might not be what she asked but at least it won't bring any harm to her.)
+        #m You|(If I remember correctly, this one contains... grapefruit? Well, it won't be long before we find that out.)
+    #m A few moments passed. You're sitting across from one another.
+    #m Sally evenly divides the drink between glasses and each of you take one. It's time for a toast.
+    #choice
+        quest_3_ending_a_toast|The liver is evil and must be punished
+        quest_3_ending_a_toast|May we be who our dogs think we are
+        quest_3_ending_a_toast|Life is short, but sweet
+    *quest_3_ending_a_toast
+    #m Sally|Sally.png|"Cheers!"
+    #m You both take a swig.
+    #m Sally|Sally.png|"..."
+    #m You|"Gulp."
+    #m Sally|Sally.png|"Pfffffft! Ew, it's so sour, it's barely drinkable!"
+    #m You|"Is it? Tastes okay for me."
+    #m Sally|Sally.png|"..."
+    #m You|"..."
+    #m Sally|Sally.png|"Phahaha, you aren't surprised at all."
+    #m You|"Here".
+    #m Sally|Sally.png|"Everything you did up until now was done perfectly, so I forgot that you too can make a mistakes."
+    #m After wiping tears that came either from laughing or from sour taste of unknown drink, Sally smiled.
+    #m Sally|Sally.png|"But I'm glad that we could drink together. Drinking alone never felt this good."
+    #m Sally|Sally.png|"Thanks for everything you do for me."
+    #m Sally|Sally.png|"I really appreciate your help."
+    #stat_inc Sally|affection|5
+    #stat_dec Sally|terror|5
+    #is_flag gd_msq3_recipe,true
+        #m You|"Maybe there's a better recipe in the book I found in owners room. Here, take it."
+        #m Sally|Sally.png|"Wow, so you did found one."
+        #m Sally|Sally.png|"There's a lot of notes. I'll see if I can make something with this knowledge."
+        #m Sally closed the book an looked at you.
+    #m Sally|Sally.png|"By the way, I prepared some canned meat for you. Please accept this gift as a token of my thanks.
+    #m You|"Nice, I'll take it."
+    #is_flag gd_msq3_ending_a,false
+        #hide_panel
+        #set_flag gd_msq3_ending_a,true
+        #reward_select Base.Wine,1,rare|Base.Wine2,1,rare|Base.CannedCornedBeef,2,rare,true
+    #jump quest_3_epilogue
+*quest_3_ending_b
+    #m You|"Well, I found the cocktail."
+    #m Sally|Sally.png|"Yay! Wait here. I'll go get us some glasses."
+    #is_flag gd_msq3_route_c,true|gd_msq3_recipe,true
+        #jump quest_3_ending_f
+    #m A few moments passed. You're sitting across from one another.
+    #m Sally evenly divides the drink between glasses and each of you take one. It's time for a toast.
+    #choice
+        quest_3_ending_b_toast|The liver is evil and must be punished
+        quest_3_ending_b_toast|May we be who our dogs think we are
+        quest_3_ending_b_toast|Life is short, but sweet
+    *quest_3_ending_b_toast
+    #m Sally|Sally.png|"Cheers!"
+    #m You both take a swig.
+    #is_trait IronGut,true
+        #m You|(...)
+        #m You|(Tastes... okay, but...)
+        #m You|(Something is not right.)
+        #m You|(A light drink like this shouldn't be causing a vertigo after just one glass.)
+        #m You|(...)
+    #fade_out
+    #m .........
+    #m ......
+    #m ...
+    #m You slowly open your eyes and look around.
+    #m Still in the same room with Sally, at the very same chair.
+    #m You notice the time on the wall clock.
+    #m You|(It's been... 8 hours?!)
+    #m Your eyes immediately pop out from shock.
+    #m Sally|Sally.png|"Ah, don't get up yet".
+    #m A sudden pain pierces your head you to try to jump on your feet.
+    #m You|"Ugh..."
+    #m Sally|Sally.png|"You should not make any sudden movements. Here, drink some water."
+    #m You take a cup from Sally and empty in a few gulps. The feel of cool water in your throat refreshes your body.
+    #m Sally|Sally.png|"Hehe, never thought you're so bad at drinking."
+    #m Sally|Sally.png|"After all what we drank wasn't heavy."
+    #m You|"I'm surprised as well".
+    #m You|(It knocked me down way too fast. Something about this cocktail smells fishy!)
+    #m Sally|Sally.png|"Anyway thanks for your help and for keeping me company."
+    #m Sally|Sally.png|"Never thought I'll be able to experience this feeling again after all happened."
+    #m Sally|Sally.png|"I prepare some canned meat for you. When you. When you sober up don't forget to take it."
+    #is_flag gd_msq3_recipe,true
+        #stat_inc Sally|affection|5
+        #m You|"Ah, the recipe..."
+        #m Sally|Sally.png|"Yes, I know. If you want to have a drink, bring me the ingredients and I'll make you one. I'll write you the list later."
+    #m With a smile Sally gives you a little peck on the cheek and goes to the other side of the room.
+    #m You|(...)
+    #m You|(Huh?)
+    #apply_stat Unhappiness,-20|Stress,+20
+    #stat_inc Sally|affection|5
+    #stat_inc Sally|terror|5
+    #is_flag gd_msq3_ending_b,false
+        #hide_panel
+        #set_flag gd_msq3_ending_b,true
+        #reward_select Base.Wine,1,rare|Base.Wine2,1,rare|Base.CannedCornedBeef,2,rare,true
+    #jump quest_3_epilogue
+*quest_3_ending_c
+    #m You|"Listen, Sally. Actually...".
+    #m Sally|Sally.png|"What's wrong? If you haven't found anything, just say it. I won't get mad."
+    #m You|"What I found is quite shocking. Are you sure you want to know?"
+    #m She frowned and nodded.
+    #fade_out
+    #m Few minutes later...
+    #m Sally is sitting in the chair. You stand nearby.
+    #m After listening your story she made a deep sigh and with a blank stare fixed her eyes on the floor.
+    #m Sally|Sally.png|"It turns out, the drug mixed into a cocktail has poisoned all frequent customers."
+    #m Sally|Sally.png|"And I was one of them... Which means everything that happened after that..."
+    #m Sally|Sally.png|"Kh! How frustrating!"
+    #m She clenched her fists tightly, eyes wet with tears.
+    #m You slowly lower your body, and as you gently put your hand on her shoulder she flinches a little.
+    #m In a few moments you felt some warmth at you chest. The woman snuggled up to you and began crying even more furiously.
+    #m After a while the room once again filled with a silence.
+    #m Sally|Sally.png|"Frankly, I have significant mental health problems. Everything started in summer 1992"
+    #m Sally|Sally.png|"Every thought I had was negative connotation in it and caused panic attacks. It became especially bad when I was trying to get asleep: my head was full of worries, each was worse than one another."
+    #m Sally|Sally.png|"And the most terrifying thing was that I couldn't explain the reason, and wasn't able to make myself change my thinking."
+    #m Sally|Sally.png|"I no longer felt the taste of food, always felt lonely and abandoned, but couldn't establish connection with other people."
+    #m Sally|Sally.png|"If I didn't meet Nellie, I might have killed myself."
+    #m Sally|Sally.png|"Wanna know how we met?"
+    #m Sally|Sally.png|"I always thought that relationship between a patient and psychiatrist can't be anything special. Letting someone you don't know to mess with your mind, spilling your weaknesses and secrets - all this looked for me as unthinkable stupidity."
+    #m Sally|Sally.png|"For this reason as if to proof myself that I'm right, I finally decided to make an appointment with one. I wasn't looking for a pro with many years of experience and lots of letters of gratitude. I chose a small private clinic ran by person still new to this stuff. Or so I thought..."
+    #m Sally|Sally.png|"The name of this psychiatrist was Nellie Henard."
+    #m Sally|Sally.png|"Hehe. I was surprised when I saw there a woman of my age who lives in my neighbourhood. We've been neighbour for a long time and regularly saw each other on our ways back home, but none of us tried to start a conversation."
+    #m Sally|Sally.png|"She was surely surprised as well. That meeting put a beginning to our friendship. Some time later we started to spend together even outside the paid visits, that time she told me she always wanted to get to know me, but couldn't overcome awkwardness."
+    #m Sally|Sally.png|"So we started to regularly talk and walk together. Our therapy sessions sessions also continued. During them Nellie asked me about my symptoms and prescribed pills with funny sounding names. At first there were some problems with them due to side effects, but in the end we were able to find me some good anti-depressants."
+    #m Sally|Sally.png|"Half a year of this life improved my psyche significantly. It’s a pity that the world has gone to hell some time after that."
+    #set_flag nellie,true
+    #fade_in
+    #m Sally|Sally.png|"I feel better now. Thanks for listening."
+    #m Feeling a relieve Sally smiled.
+    #m Sally|Sally.png|"It pains me a lot, that the worst moment of my life was caused by unpredictable shit like this."
+    #m Sally|Sally.png|"But thanks to that I was able to meet my best friend, who taught me to enjoy life even more than before."
+    #m Sally|Sally.png|"And now I met you. I could hardly have asked for more."
+    #m You|"You're making me embarrassed."
+    #m Sally|Sally.png|"Hehe, by the way, do you still have a recipe?"
+    #m You gave Sally the recipe book from tavern. 
+    #m Sally|Sally.png|"Mmm-mmm-mmm, hmm..."
+    #m Sally|Sally.png|"I have an idea, wait here".
+    #fade_out
+    #m Some time later...
+    #fade_in
+    #m Sally|Sally.png|"Ta-da! A Sally's special cocktail is finished!"
+    #m You|"I won't have tummy aches after I drink it, right?"
+    #m Sally|Sally.png|"Oh, don't be like that! I've put all my love into this masterpiece."
+    #m You|"Afraid to ask what exactly you added to it".
+    #m Sally|Sally.png|"Don't be afraid, give it a try."
+    #m You|"Okay."
+    #sfx player_drinking_swallow_01
+    #apply_stat Unhappiness,-40
+    #m After a small sip you felt a pleasant sweetness inside your mouth. 
+    #m You|"Wow, it's actually good."
+    #m Sally|Sally.png|"So good you didn't felt drugs I put into it?"
+    #m You|"Wha- Pfff..."
+    #m Sally|Sally.png|"Ahahaha. I was just joking, but you should have seen your face!"
+    #m You|"You have a bad sense of humour."
+    #m Sally|Sally.png|"Hehe, glad you liked it. If you want more, bring me the ingredients and I will make you one. It will be difficult to find them, but I'll write you the list anyway."
+    #m You|"Sure. We'll return to this topic once we're back at the convenience store."
+    #m Sally|Sally.png|"By the way, I prepared some canned meat for you. Please accept this gift as a token of my thanks.
+    #m You|"Nice, I'll take it."
+    #stat_inc Sally|affection|15
+    #stat_dec Sally|terror|10
+    #is_flag gd_msq3_ending_c,false
+        #hide_panel
+        #set_flag gd_msq3_ending_c,true
+        #reward expansion.SallySpecial,1,special|Base.CannedCornedBeef,2,rare
+    #jump quest_3_epilogue
+*quest_3_ending_d
+    #m You|"Well, I found the recipe."
+    #m Sally|Sally.png|"Wow, that's an excellent news. May I have a look?"
+    *quest_3_recipe
+    #m You gave Sally the recipe book from tavern. 
+    #m Sally|Sally.png|"Mmm-mmm-mmm, hmmm..."
+    #m Sally|Sally.png|"Have you seen the recipe?"
+    #m You nodded.
+    #m Sally|Sally.png|"How do you think, what ingredient the author of this book marked as M? Mango? Marakuya? Mandarin?"
+    #is_flag gd_msq3_route_c,true
+        #m You|(It is best you do not know.)
+    #m You|"Maybe, margarin?"
+    #m Sally|Sally.png|"Haha, no way."
+    #m Sally|Sally.png|"Okay, give me a few minutes, I'll to make something."
+    #fade_out
+    #m Some time later...
+    #fade_in
+    #m Sally|Sally.png|"Ta-da! Super Delarock is finished!"
+    #m You|"Let's not use that name."
+    #m Sally|Sally.png|"Oh, don't be like that! I've put all my skill into this masterpiece."
+    #m You|"Afraid to ask what exactly you added to it".
+    #m Sally|Sally.png|"Don't be afraid, give it a try."
+    #m You|"Okay."
+    #sfx player_drinking_swallow_01
+    #apply_stat Unhappiness,-20
+    #m After a small sip you felt a sour but refreshing taste inside your mouth. 
+    #m You|"Not bad."
+    #m Sally|Sally.png|"We didn't have any mandarins, so I just used an orange."
+    #m You|"This explains sourness."
+    #m Sally|Sally.png|"Buu, if you don't like it, just say is."
+    #m You|"I'm just fine with it!".
+    #m Sally|Sally.png|"Hehe, glad you liked it. If you want more, bring me the ingredients. I'll write you the list."
+    #m You|"Sure. We'll return to this topic once we're back at the convenience store."
+    #m Sally|Sally.png|"By the way, I prepared some canned meat for you. Please accept this gift as a token of my thanks.
+    #m You|"Nice, I'll take it."
+    #stat_inc Sally|affection|5
+    #stat_dec Sally|terror|5
+    #is_flag gd_msq3_ending_d,false
+        #hide_panel
+        #set_flag gd_msq3_ending_d,true
+        #reward_select Base.Wine,1,rare|Base.Wine2,1,rare|Base.CannedCornedBeef,2,rare,true
+    #jump quest_3_epilogue
+*quest_3_ending_e
+    #m You|"Well, I haven't found anything."
+    #is_flag gd_msq3_toilet,true
+        #m You|"Aside from toilet with a pissed seat."
+        #m Sally|Sally.png|"Haha, yeah, restroom in that place is horrible."
+        #m Only for a moment a smile appears on Sally's face.
+        #stat_inc Sally|affection|2
+    #m Sally|Sally.png|"Haah, that's unfortunate."
+    #m Sally|Sally.png|"I guess the owner of that place took the recipe with him, when all the chaos started."
+    #m Sally|Sally.png|"Thanks for searching that for me anyways."
+    #m You|"You're welcome."
+    #apply_stat Unhappiness,+30
+    #m You|(...)
+    #set_flag gd_msq3_ending_e,true
+    #jump quest_3_epilogue
+*quest_3_ending_f
+    #m You|"Don't bother. It's barely enough for one person. You can have my share too."
+    #m You|(Hehe, an experiment won't be an experiment if there's no subject.)
+    #m You give Sally the cocktail.
+    #m You|"Go on. Don't worry about me."
+    #m Sally|Sally.png|"I'm not sure. There's enough for both of us..."
+    #is_stat Sally,affection,30,lt
+        #jump quest_3_ending_g
+    #fade_out black
+    #m She carefully sniffs the drink.
+    #m Sally|Sally.png|"Even the smell is the same as I remember it."
+    #m Sally|Sally.png|"I hope you won't tell me you're changing your mind."
+    #m You|"If you take your time like this, anything may happen, hehe".
+    #m After you exchanged smiles, Sally, finally, took a small sip.
+    #fade_out 0.95,0.42,0.53|0.05|true
+    #m Sally|Sally.png|"Tastes even better than before."
+    #m You carefully observe Sally as she enjoys the drink.
+    #m You notice that her breathing is slowly getting rough and her body becoming sweaty.
+    #m Slumped in the chair Sally looked at you with an innocent smile.
+    #m Her heart's racing, pupils dilated, skin's flushed. It was obvious that she was high.
+    #fade_out black|1|true
+    #m You|(If this is what people call a drink of Gods, perhaps they're worshipping Devil.)
+    #m You|(Hehehehe...)
+    #m You|(...)
+    #m You|(Haah. What a sick and inhuman scum have I become.)
+    #set_flag evil_route,true
+    #apply_stat Unhappiness,+40
+    #stat_inc Sally|affection|15
+    #stat_inc Sally|terror|10
+    #is_flag gd_msq3_recipe,true
+        #m When Sally came to her senses, you gave her the recipes.
+        #m She offered you cocktails in exchange for ingredients.
+        #m You|(I should remind her to write a list later.)
+    #is_flag gd_msq3_ending_f,false
+        #hide_panel
+        #set_flag gd_msq3_ending_f,true
+        #reward_select Base.Wine,1,rare|Base.Wine2,1,rare|Base.CannedCornedBeef,2,rare,true
+    #jump quest_3_epilogue
+*quest_3_ending_g
+    #m With a tense smile Sally awkwardly avert her eyes.
+    #m Trying to hide the fact that they got wet, she fixes her glasses with her hand.
+    #m Sally|Sally.png|"W-well, I probably... Drink it later..."
+    #m Sally|Sally.png|"Sorry for making you come all the way."
+    #m She puts the glass on the counter.
+    #m You|(Tch...)
+    #m It seems that she saw through your malicious intent.
+    #m You won't be able to explain yourself and any excuse will make things even worse.
+    #m Sally is scared of you, she feels that you're not the person she can trust. Is there anything you can do to fix the situation?
+    #set_flag gd_msq3_route_g,true
+    #set_flag evil_route,true
+    #is_trait Brave,true
+        #set_flag gd_msq3_evade,true
+    #choice
+        quest_3_evade|Drink that shit with all your might|gd_msq3_evade
+        quest_3_assault|Assault Sally
+        quest_3_leave|Nothing can be done
+    *quest_3_evade
+        #m You take big breath and grin.
+        #m You|"Ha! Who said there would be anything left by that time?"
+        #sfx player_drinking_swallow_01
+        #m In an instant you snatched the glass and drank it in one gulp.
+        #m Once Sally saw it, her mouth opened in surprise.
+        #m You|(Smile, come on, smile. Show her that everything is cool, that she's the one in the wrong.)
+        #m Sally|Sally.png|"..."
+        #m You|(...)
+        #is_trait WeakStomach,true
+            #m Suddenly you felt sick. Vertigo and a wave of nausea attacked you with all their might.
+            #m Looking at the empty glass in your hand you're doing your best to keep a straight face.
+            #m You|(Uugh... What the fuck is this, my vision's clouding... I shouldn't have drunk it. Now Sally will...)
+            #sfx melee_body_fall_wood_04
+            #fade_out
+            #m Sally|Sally.png|"Hey, what happened!?"
+            #m Sally|Sally.png|"............!"
+            #m Sally|Sally.png|"........!"
+            #m You|(Aah, why did I even started all this?)
+            #m .........
+            #m ......
+            #m ...
+            #is_stat Sally,affection,20,lt
+                #m When came back to your senses, there were no traces of Sally's presence. She left.
+                #jump quest_3_bad_end 
+            #m You|"Ugh..."
+            #m When you opened your eyes, Sally was right in front of you.
+            #m As she noticed that you came back to your senses, a weak smile appeared on her face.
+            #m Sally|Sally.png|"How do you feel?"
+            #m You|"Like I'd been hit by a truck...."
+            #m You|"Your cocktail is a piece of shit."
+            #m Sally|Sally.png|"Hehe, I know."
+            #m Sally|Sally.png|"..."
+            #m Sally|Sally.png|"I'm sorry..."
+            #m You|"For what?"
+            #m Sally|Sally.png|"At that moment I thought that..."
+            #m Sally|Sally.png|"..."
+            #m You|"Don't know what you're talking about, but I need not apologise."
+            #m Sally|Sally.png|"I-I see..."
+            #m You|"Haah, lying like this is so tiring. I should get back to work."
+            #m Sally|Sally.png|"Wait, what abo..."
+            #m You|"How much food do have left?"
+            #m Sally|Sally.png|"Canned food? We're almost out, bu..."
+            #m You|"Then we need to find more. I'll go find some."
+            #is_flag gd_msq3_recipe,true
+                #m You|"Also check the recipe book. Maybe there's a normal cocktail in there."
+            #m Without waiting for her answer, you get to your feet and leave.
+            #m Sally|Sally.png|(...)
+            #m Struck by an unknown feeling guilt Sally silently sees you off.
+            #stat_inc Sally|affection|5
+            #stat_inc Sally|terror|10
+            #is_flag gd_msq3_ending_g,false
+                #hide_panel
+                #set_flag gd_msq3_ending_g,true
+                #reward_select Base.Cigarettes,1,common|Base.DeadRat,2,common|ProneToIllness,true
+            #jump quest_3_epilogue
+        #m Suddenly you felt sick, but was able to keep a straight face.
+        #m You put the glass on the table and sighed slightly.
+        #m You|"Tastes like shit. Is this really called a heaven in glass?"
+        #m Sally|Sally.png|"Wha... I'm... N-not sure..."
+        #m You|"Very interesting. I'll go take a dump."
+        #m Sally|Sally.png|"Wait..."
+        #m Sally|Sally.png|"..."
+        #fade_out
+        #m .........
+        #m ......
+        #m ...
+        #m You|Blaaaaaargh... Haaa, haaa...
+        #m You|Ough... Ough...
+        #m Finally left alone you hurried to empty your stomach.
+        #m You|(Pheeew, that was close. I nearly lost my consciousness there.)
+        #m You|(Hopefully she won't suspect me any more.)
+        #sfx player_drinking_swallow_01
+        #m After you gargle your throat with water and replenished your body fluids a little, you decided to go back.
+        #is_flag gd_msq3_recipe,true
+            #m Some time later you gave Sally the recipes.
+            #m She offered you cocktails in exchange for ingredients.
+            #m You|(I should remind her to write a list later.)
+            #stat_inc Sally|affection|5
+        #stat_inc Sally|terror|5
+        #is_flag gd_msq3_ending_g,false
+            #hide_panel
+            #set_flag gd_msq3_ending_g,true
+            #reward_select Base.Cigarettes,1,common|Base.DeadRat,2,common|WeakStomach,true
+        #jump quest_3_epilogue
+    *quest_3_assault
+        #m You|(What the fuck?)
+        #m You|(Have I really just thought of this crap?)
+        #m You|(...)
+        #m You|(I should just accept the defeat.)
+        #apply_stat Unhappiness,+100
+    *quest_3_leave
+        #m The remnants of their common sense don't allow you to do even more foolish things.
+        #m Without saying anything you turn your back and leave.
+        #m Sally silently stares at your back as you walk through the door.
+        #m You|(Don't die out there, Sally...)
+        #m You|(Goodbye.)
+        *quest_3_bad_end
+        #fade_out black
+        #stat_dec Sally|affection|30
+        #set_flag gd_bad_ending_1,true
+        #set_flag sally_left,true
+        #npc_remove Sally
+        #m When you came back to take things you've forgotten, Sally was already gone.
+        #fade_in
+        #quest_fail gd_msq3
+        #exit
+
+*quest_3_epilogue
+    #fade_out
+    #m .........
+    #m ......
+    #m ...
+    #is_flag gd_msq3_toilet,false 
+        #sfx toilet_flush
+        #fade_in
+        #m You sighed with relief.
+        #m You|"I was close to shitting myself."
+        #m You|"Thanks, Sally. You have a wonderful toilets in here."
+        #m Sally|Sally.png|"No problem. Although they aren't mine, haha."
+    #fade_in
+    #is_flag h_chloe,true
+        #m You|(The most shocking thing for me was the diary of Chloe Lyps.)
+        #is_flag gd_msq3_true_ending,true
+            #m You|(The drug in cocktail nearly ruined her psyche.)
+            #is_flag h_broken_nail,true
+                #m You|(And Hanna who might have known about it used Chloe state to turn her into a plaything.)
+        #m You|(A shock and stress broke the poor girl, and her last moments she spent in pain.)
+        #m You|(I wonder where did Hanna go, and how is she connected to Alexander.)
+        #is_flag h_perfume,true
+            #m You|(My only clue is that small bottle of perfume.)
+            #m You put it near your nose and sniff.
+            #m You|(It smells with cherry, kinda unusual fragrance.)
+            #m You|(Still, I'm not a dog, and be able to find her by smell.)
+            #is_flag h_broken_nail,true
+                #m You|(I might be able to identify her by nail color, since I found her broken nail.)
+                #m You|(But to do that I need to find her first.)
+        #is_flag h_broken_nail,true
+            #m You|(I wonder, what was inside that small case inside the wall in the bathroom?)
+            #m You|(Chloe mentioned in her diary that Hanna suddenly entered the bathroom when she was inside.)
+            #m You|(In the morning... despite never being in the tavern during day time.)
+            #m You|(Anyway I won't be able to find out what was inside the case, until I meet her.)
+        #m You sigh.
+        #m You|(Life is full of misery.)
+        #m You|(But moments when we truly feel alive are always the time when break through.)
+        #m You|(Hopefully in the next life Chloe will achieve better heights.)
+        #is_flag gd_msq3_route_c,true|gd_msq3_recipe,true
+            #m You|(Aside from Hanna's identity I need to find out who the hell is this person Alexander is.)
+            #is_flag ms_science_book,true
+                #m You|(A scientist who specializes at virology. Smells awfully fishy.)
+            #m You|(He left the tavern to take back the stolen sample of something. This can be either virus itself or vaccine, couldn't this sample of the virus that caused this pandemic...maybe I'm overthinking it.)
+            #is_flag h_broken_nail,true
+                #m You|(I feel a bit idiotic for speculating on this stuff as if I was some hard boiled detective from movie, but you'll have to put up with it haha.)
+    #set_flag gd_msq3_cleared,true
+    #is_flag gd_msq3_ending_g,false
+        #quest_complete gd_msq3
+    #exit

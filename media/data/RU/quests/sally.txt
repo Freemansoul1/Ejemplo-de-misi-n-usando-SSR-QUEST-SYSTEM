@@ -1,0 +1,159 @@
+#quest gd_msq1|unlocked
+    #task t0|unlocked|hidden
+        #set RaiseFlag|normal_route/immunity_route|mc.txt,initialize
+        #action UnlockTask|gd_msq1|t1
+    #task t1
+        #set EnsureSafety|25
+        #action RunScript|sally_story.txt,quest_1_intro
+        #action UnlockTask|gd_msq1|t2,t2_1,t2_2
+    #task t2_1|hidden
+        #set FindItem|Base.Hammer,1|Base.NailsBox,1
+    #task t2_2|hidden
+        #set FindItem|Base.Plank,4
+        #action RunScript|sally_story.txt,quest_1_1_plank
+    #task t2
+        #set TaskCondition|gd_msq1|t2_1,t2_2
+        #action UnlockTask|gd_msq1|t3
+    #task t3
+        #set GotoLocation|10841,10031,0|building
+        #action RunScript|sally_story.txt,quest_1_2
+        #action UnlockTask|gd_msq1|t4
+    #task t4
+        #set BarricadeBuilding|10841,10031,0|windows
+        #action RunScript|sally_story.txt,quest_1_3
+
+#quest gd_rq1|daily
+    #task t1|unlocked
+        #set KillZombie|15
+        #action UnlockTask|gd_rq1|t2
+    #task t2
+        #set RaiseFlag|gd_rq1_cleared
+        #action CompleteQuest|gd_rq1
+
+#quest gd_rq2
+    #task r0|unlocked|hidden
+        #set RaiseFlag|gd_rq2_available|sally_quests.txt,rq2_unlock
+        #action UnlockTask|gd_rq2|t1
+    #task t0_1
+        #set WaitUntil|event|gd_rq2_cd|end
+        #action UnlockQuest|gd_rq1
+        #action UnlockTask|gd_rq2|t0_2
+    #task t0_2
+        #set TaskCondition|gd_rq2|r0
+    #task t1
+        #set RaiseFlag|gd_rq2_easy/gd_rq2_normal/gd_rq2_hard
+        #action UnlockTask|gd_rq2|t2
+    #task t2
+        #set WaitUntil|time|false|180
+        #action UnlockTask|gd_rq2|t2_1,t3
+    #task t2_1|hidden
+        #set GotoLocation|10841,10031,0|building
+        #action RunScript|sally_quests.txt,rq2_ending
+    #task t3
+        #set RaiseFlag|gd_rq2_cleared
+    #task e1
+        #set RaiseFlag|gd_rq2_cleared
+        #action SetEvent|gd_rq2_cd|true|00:00|0
+        #action SetEvent|gd_quest_cd|false|3
+        #action CompleteQuest|gd_rq2
+    #task e2
+        #set RaiseFlag|gd_rq2_cleared
+        #action SetEvent|gd_rq2_cd|true|00:00|0
+        #action SetEvent|gd_quest_cd|false|6
+        #action CompleteQuest|gd_rq2
+
+#quest gd_msq3
+    #task f1|unlocked|hidden
+        #set FindItem|expansion.Delarock,1
+        #action RunScript|sally_story.txt,quest_3_cocktail
+    #task f2|unlocked|hidden
+        #set FindItem|expansion.NotDelarock,1
+        #action RunScript|sally_story.txt,quest_3_cocktail
+    #task t1|unlocked
+        #set GotoLocation|10762,10554,0|room
+        #action CreateHorde|10757,10549,10768,10556,0|3
+        #action UnlockTask|gd_msq3|t1_1
+    #task t1_1
+        #set Secure|10762,10554,0|building
+        #action RunScript|sally_story.txt,quest_3_1
+    #task t1_2
+        #set RaiseFlag|gd_msq3_toilet
+        #action UnlockTask|gd_msq3|t2,t4,t4_1,t4_2,t4_3,t4_4,t4_5,t4_6,t4_7,t4_8
+    #task t1_2_a|hidden
+        #set ContextAction|Использовать|10765,10545,0|0|sally_story.txt,quest_3_1_1|gd_msq3_toilet
+        #action Reward|Base.ToiletPaper,1,common
+    #task t1_2_b|hidden
+        #set ContextAction|Использовать|10763,10545,0|0|sally_story.txt,quest_3_1_2|gd_msq3_toilet
+    #task t2
+        #set OpenContainer|fridge|10762,10548,0
+        #action RunScript|sally_story.txt,quest_3_2
+        #action UnlockTask|gd_msq3|t3
+    #task t3
+        #set LootContainer|fridge|10762,10548,0|expansion.Delarock,true,Неопознанный напиток 1|expansion.NotDelarock,true,Неопознанный напиток 2|expansion.NotDelarock,true,Неопознанный напиток 3
+        #action RunScript|sally_story.txt,quest_3_2_selected
+    #task t4
+        #set RaiseFlag|gd_msq3_recipe
+        #action UnlockTask|gd_msq3|t5
+    #task t4_1|hidden
+        #set ContextAction|Осмотреть койку|10768,10546,1|0|sally_story.txt,quest_3_3_photo|gd_msq3_photo
+    #task t4_2|hidden
+        #set ContextAction|Осмотреть сейф|10766,10546,1|0|sally_story.txt,quest_3_3_notes|gd_msq3_recipe
+    #task t4_3|hidden
+        #set ContextAction|Осмотреть ванну|10758,10554,1|0|sally_story.txt,quest_3_3_bath|h_broken_nail
+    #task t4_4|hidden
+        #set ContextAction|Осмотреть умывальник|10757,10551,1|0|sally_story.txt,quest_3_3_mirror|h_perfume
+    #task t4_5|hidden
+        #set ContextAction|Осмотреть койку|10765,10546,1|0|sally_story.txt,quest_3_3_book|ms_science_book
+    #task t4_6|hidden
+        #set ContextAction|Осмотреть стул|10763,10546,1|0
+        #action RunScript|sally_story.txt,quest_3_3_none
+    #task t4_7|hidden
+        #set ContextAction|Осмотреть койку|10765,10553,1|0
+        #action RunScript|sally_story.txt,quest_3_3_none
+    #task t4_8|hidden
+        #set ContextAction|Осмотреть стул|10762,10554,1|0|sally_story.txt,quest_3_3_diary|gd_msq3_recipe
+    #task t5
+        #set RaiseFlag|gd_msq3_cleared
+        #action CompleteQuest|gd_msq3
+
+#quest gd_msq2
+    #task t1_1|unlocked
+        #set RaiseFlag|gd_msq2_intro
+        #action UnlockTask|gd_msq2|t1_2,t1_2_1,t1_2_2
+    #task t1_2_1|hidden
+        #set Secure|10671,10627,0|building
+    #task t1_2_2|hidden
+        #set EnsureSafety|30
+    #task t1_2
+        #set TaskCondition|gd_msq2|t1_2_1,t1_2_2
+        #action RunScript|sally_story.txt,quest_2_2
+    #task t2|hidden
+        #set QuestCondition|gd_msq3
+        #action UnlockTask|gd_msq2|t2_1
+    #task t2_1
+        #set WaitUntil|time|false|2:00|0
+        #action RunScript|sally.txt,gd_msq2_event
+    #task t3
+        #set WaitUntil|event|GasStation|end
+        #action UnlockTask|gd_msq2|t4
+    #task t4
+        #set RaiseFlag|gd_msq2_cleared
+        #action CompleteQuest|gd_msq2
+
+#quest gd_eq1|event/GasStation
+    #task t1|unlocked
+        #set RaiseFlag|gd_eq1_intro
+        #action UnlockTask|gd_eq1|t2,e1,e2
+    #task t2
+        #set RaiseFlag|gd_eq1_cleared
+        #action CompleteQuest|gd_eq1
+    #task e1|hidden
+        #set ContextAction|Осмотреть|10666,10614,0|5
+        #action RunScript|sally_events.txt,hide_and_seek_2
+        #action Reward|Base.CookiesChocolate,1,common
+        #action SetFlag|gd_eq1_cleared|true
+    #task e2|hidden
+        #set OpenContainer|counter|10676,10630,0
+        #action RunScript|sally_events.txt,hide_and_seek_3
+        #action Reward|Base.HotDrinkSpiffo,1,special
+        #action SetFlag|gd_eq1_cleared|true

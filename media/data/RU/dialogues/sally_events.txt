@@ -1,0 +1,96 @@
+*gas_station
+    #is_quest gd_eq1|completed
+        #jump hide_and_seek_4
+    #is_quest gd_eq1|unlocked
+        #is_flag gd_eq1_intro,false
+            #jump hide_and_seek_1
+        #exit
+    #m Салли|Sally.png|"Неплохое место эта заправка".
+    #m Вы|"Да, но в магазине было безопаснее".
+    #exit
+
+*hide_and_seek_1
+    #is_state Sally|sit
+        #fade_out
+        #npc_create Sally|sally_normal|idle|10670,10628,0|E
+        #fade_in
+    #m Салли|Sally.png|"Эй, сыграем в прятки!"
+    #m Вы|"Что?"
+    #m Салли|Sally.png|"Не задавай лишних вопросов! Я прячусь, ты ищешь".
+    #m Салли|Sally.png|"Закрой глаза и считай до ста".
+    #hide_panel
+    #fade_out
+    #m Вы закрыли глаза.
+    #m .........
+    #m ......
+    #m ...
+    #m Вы|"98"
+    #m Вы|"99"
+    #m Вы|"100"
+    #m Вы|"Всё! Я иду искать! Кто не спрятался, тот сам виноват!"
+    #npc_remove Sally
+    #set_flag gd_eq1_intro,true
+    #hide_panel
+    #fade_in
+    #exit
+
+*hide_and_seek_2
+    #cutscene true
+    #set_volume music|0
+    #look_at 10666,10614
+    #m Вы подобрали окровавленный клочок бумаги.
+    #m "горе мне горе мне тому, кто никогда не переставал любить тебя, даже если ты решишь двигаться дальше, я всегда буду любить тебя во веки веков навсегда навсегда навсегда навсегда навсе..."
+    #m "горе мне, горе мне, чья промежность ободрана и окровавлена, я так расцарапал ее, что хочу показать ее тебе, чтобы доказать, что она твоя и что я все еще люблю тебя"
+    #m (Что за херня!?)
+    #sfx ghost
+    #m Голос|"...твоё ли...цо лишь для.. меня..."
+    #door 10670,10616,0|open|silent
+    #npc_create Sally|sally_normal|idle|10669,10616,0|NW
+    #sfx mx_stinger_zombie_surprire_player_02
+    #look_at 10669,10616|true
+    #m Вы|"Блядь!"
+    #m Салли|Sally.png|"Вау, ты чего орёшь?"
+    #m Вы|"Напугала меня до усрачки и ещё спрашиваешь. Что ты здесь делаешь?".
+    #m Салли|Sally.png|"Я устала ждать, пока ты меня найдёшь".
+    #m Вы|"Ты ведь пряталась в туалете, схитрить решила,"
+    #m Салли|Sally.png|"Неа, я сидела за прилавком".
+    #m Вы|(Что?)
+    #m Вы|(Тогда что это было!?)
+    #m Салли|Sally.png|"Может, в следующий раз тебе повезёт больше, а пока держи печеньку".
+    #fade_out black
+    #npc_remove Sally
+    #npc_update Sally
+    #set_flag gd_eq1_ending_a,true
+    #fade_in
+    #cutscene false
+    #exit
+
+*hide_and_seek_3
+    #fade_out
+    #npc_create Sally|sally_normal|idle|10676,10631,0|NW
+    #look_at 10676,10631
+    #fade_in
+    #m Салли|Sally.png|"Эй! Ты сжульнича${female,ла,л}!".
+    #m Вы|"Гыгыгы, выкуси!".
+    #m Салли|Sally.png|"Блин. Ладно, твоя взяла".
+    #m Вы|"Где моя награда?"
+    #m Салли|Sally.png|"Я сделаю тебе кофе. Сойдёт?"
+    #m Вы|"По рукам".
+    #m Салли|Sally.png|"Окей, подожди немного".
+    #fade_out black
+    #npc_remove Sally
+    #npc_update Sally
+    #set_flag gd_eq1_ending_b,true
+    #fade_in
+    #exit
+
+*hide_and_seek_4
+    #is_flag gd_eq1_ending_a,true
+        #m Салли|Sally.png|"Не смотри на меня так".
+        #m Салли|Sally.png|"У меня нет настроения снова играть в прятки".
+        #exit
+    #is_flag gd_eq1_ending_b,true
+        #m Салли|Sally.png|"Не верится, что ты вот так просто смо${female,гла,г} меня найти".
+        #m Вы|"У меня отличная интуиция".
+        #m Салли|Sally.png|"Да-да, наш${female,ла,ёл}, кому сказки рассказывать".
+    #exit

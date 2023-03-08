@@ -1,0 +1,31 @@
+#is_flag sally_left,true
+    #exit
+
+#is_quest gd_rq2|unlocked,uncompleted
+    #is_task gd_rq2|t3|uncompleted
+        #is_flag gd_rq2_easy,true
+            #exit
+        #is_flag gd_rq2_normal,true
+            #exit
+        #is_flag gd_rq2_hard,true
+            #exit
+
+#is_quest gd_msq2|unlocked,uncompleted
+    #is_flag gd_msq2_cleared,false
+        #is_task gd_msq2|t2|locked
+            #npc_create Sally|sally_normal|sneak|10677,10618,0|NE
+            #exit
+        #is_event GasStation|true
+            #is_task gd_eq1|t2|unlocked,uncompleted
+                #exit
+            #is_time 02:00|07:00
+                #npc_create Sally|sally_normal|sit|10670,10628,0|E
+                #exit
+        #npc_create Sally|sally_normal|idle|10671,10623,0|SE
+        #exit
+
+#is_flag gd_msq1_cleared,true
+    #npc_create Sally|sally_normal|idle|10840,10031,0|SE
+    #exit
+#npc_create Sally|sally_normal|sneak|10840,10027,0|S
+#exit

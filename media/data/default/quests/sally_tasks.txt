@@ -1,0 +1,59 @@
+*gd_msq1_t1
+#name Break away from the zombies.
+*gd_msq1_t2
+#name Find a hammer, a box of nails and a few planks.
+*gd_msq1_t3
+#name Go back to the convenience store.
+*gd_msq1_t4
+#name Barricade windows.
+
+*gd_rq2_t0_1
+#name Wait until the morning (6 AM).
+*gd_rq2_t0_2
+#name Make the neighborhood safer.
+*gd_rq2_t1
+#name Embark with Sally on an expedition.
+*gd_rq2_t2
+#name Wait for Sally's return.
+*gd_rq2_t3
+#name Return to the convenience store.
+*gd_rq2_e1
+#name Talk to Sally.
+*gd_rq2_e2
+#name Save Sally from the trouble.
+
+*gd_msq2_t1_1
+#name Meet on the south gas station of Muldraugh.
+*gd_msq2_t1_2
+#name Kill zombies on the gas station.
+*gd_msq2_t2_1
+#name Wait until the morning (7 AM).
+*gd_msq2_t3
+#name Wait until the morning (7 AM).
+*gd_msq2_t4
+#name Talk to Sally.
+
+*gd_msq3_t1
+#name Find a tavern in the south part of Muldraugh.
+*gd_msq3_t1_1
+#name Kill all zombies.
+*gd_msq3_t1_2
+#name Visit the restroom.
+*gd_msq3_t2
+#name Inspect the fridge.
+*gd_msq3_t3
+#name Choose a cocktail.
+*gd_msq3_t4
+#name Check upstairs.
+*gd_msq3_t5
+#name Report to Sally.
+
+*gd_eq1_t1
+#name Talk to Sally.
+*gd_eq1_t2
+#name Look for Sally.
+
+*gd_rq1_t1
+#name Kill 15 zombies.
+*gd_rq1_t2
+#name Report to Sally.

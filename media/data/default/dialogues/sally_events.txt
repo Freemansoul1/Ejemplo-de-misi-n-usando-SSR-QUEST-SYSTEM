@@ -1,0 +1,95 @@
+*gas_station
+    #is_quest gd_eq1|completed
+        #jump hide_and_seek_4
+    #is_quest gd_eq1|unlocked
+        #is_flag gd_eq1_intro,false
+            #jump hide_and_seek_1
+        #exit
+    #m Sally|Sally.png|"This place isn't that bad."
+    #m You|"Yeah, but convenience store did offer better protection."
+    #exit
+
+*hide_and_seek_1
+    #is_state Sally|sit
+        #fade_out
+        #npc_create Sally|sally_normal|idle|10670,10628,0|E
+        #fade_in
+    #m Sally|Sally.png|"Hey, let's play hide and seek!"
+    #m You|"What?"
+    #m Sally|Sally.png|"Don't 'what' me! I'll hide, you'll look for me."
+    #m Sally|Sally.png|"Now close your eyes and count to 100."
+    #hide_panel
+    #fade_out
+    #m You closed your eyes.
+    #m .........
+    #m ......
+    #m ...
+    #m You|"98"
+    #m You|"99"
+    #m You|"100! Ready or not here I come!"
+    #npc_remove Sally
+    #set_flag gd_eq1_intro,true
+    #hide_panel
+    #fade_in
+    #exit
+
+*hide_and_seek_2
+    #cutscene true
+    #set_volume music|0
+    #look_at 10666,10614
+    #m You picked up a bloodied piece of paper.
+    #m "Woe is me woe is the me who never stopped loving thee even if thou choosest to move on I will always love thee forevermore forevermore forevermore foreverm..."
+    #m "Woe is me woe is the me whose crotch is raw and bloody I scratched it so much I want to show it to thee to prove that it is thine and that I still love thee."
+    #m (What the hell?)
+    #sfx ghost
+    #m Voice|"...your fa...ce is for no one.. but me..."
+    #door 10670,10616,0|open|silent
+    #npc_create Sally|sally_normal|idle|10669,10616,0|NW
+    #sfx mx_stinger_zombie_surprire_player_02
+    #look_at 10669,10616|true
+    #m You|"Jesus ****** christ!"
+    #m Sally|Sally.png|"Woah, why are you freaking out?"
+    #m You|"You scared the shit outta me. Since when you are here?"
+    #m Sally|Sally.png|"You were taking too long and so I got bored, went looking after you."
+    #m You|"Wait, then how did you pull out such scare...?"
+    #m Sally|Sally.png|"What do you mean? I was hiding behind the counter."
+    #m You|(Huh, what-?)
+    #m You|(Then what the hell was that thing I saw!?)
+    #m Sally|Sally.png|"Hope you'll do better next time (chuckles). And here is your long awaited loser cookie(chuckles)."
+    #fade_out black
+    #npc_remove Sally
+    #npc_update Sally
+    #set_flag gd_eq1_ending_a,true
+    #fade_in
+    #cutscene false
+    #exit
+
+*hide_and_seek_3
+    #fade_out
+    #npc_create Sally|sally_normal|idle|10676,10631,0|NW
+    #look_at 10676,10631
+    #fade_in
+    #m Sally|Sally.png|"Heeeey! No fair, you cheated!"
+    #m You|"Haha, suck it up you loser."
+    #m Sally|Sally.png|"Tch. Fine, you win."
+    #m You|"Where's my reward?"
+    #m Sally|Sally.png|"I'll make you a coffee but no chicken dinner, sounds good?"
+    #m You|"Fine by me."
+    #m Sally|Sally.png|"Okay, give me a few minutes."
+    #fade_out black
+    #npc_remove Sally
+    #npc_update Sally
+    #set_flag gd_eq1_ending_b,true
+    #fade_in
+    #exit
+
+*hide_and_seek_4
+    #is_flag gd_eq1_ending_a,true
+        #m Sally|Sally.png|"Don't look at me like that."
+        #m Sally|Sally.png|"I'm not in the mood to play again".
+        #exit
+    #is_flag gd_eq1_ending_b,true
+        #m Sally|Sally.png|"Can't believe you were able to find me."
+        #m You|"I have a magical six sense wooo."
+        #m Sally|Sally.png|"Yeah, right. Find someone else to believe that magical bullshit(chuckles)."
+    #exit
